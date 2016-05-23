@@ -1,0 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,900,500italic);
+
+.container {
+    font-family: 'Roboto';
+}
+
+.panel-body {
+    text-align: center;
+     /*width: 300px;*/
+}
+
+.panel-default {
+    width: 300px;
+}

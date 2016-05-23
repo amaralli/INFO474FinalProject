@@ -7,13 +7,63 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.1/angular.min.js"></script>
     	<script src="javascript/app.js"></script>
-
+        <link rel= "stylesheet" href="main.css">
+        
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,900,500italic' rel='stylesheet' type='text/css'>
+        
       <title>Where does my vote go?</title>
     </head>
 
     <body class="container" ng-app="explanation">
         <div ng-controller="test">
-            <h1>THIS IS A TEST PAGE =D </h1>
+            <h1>THIS IS A TEST PAGE WITH NAV ELEMENTS AND TEXT =D </h1>
+            
+            
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Which State are you currently registered to vote in?</h4>
+                    
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            State <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--Boostrap dropdown for selecting state-->
+            
+            <!--Prompt users to register (need to talk about new windown or refresh page)-->
+            <h3>Not registered?</h3>
+            <a href="https://vote.usa.gov/" class="btn btn-primary btn-lg active" role="button" target="_blank">Register Here Now</a>
+            
+            
+            <!--Button group to select party affiliation-->
+            <h3>Are you registered with a party?</h3>
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">Republican</button>
+                <button type="button" class="btn btn-default">Democratic</button>
+                <button type="button" class="btn btn-default">Independent</button>
+            </div>
+            
+            <!--button group to toggle between explore options-->
+            <h3>Explore others:</h3>
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">Open</button>
+                <button type="button" class="btn btn-default">Semi-Open</button>
+                <button type="button" class="btn btn-default">Semi-Closed</button>
+                <button type="button" class="btn btn-default">Closed</button>
+            </div>
+            
+            
         </div>
+        
+        
     </body>
 </html>
