@@ -1,0 +1,843 @@
+{ "states" : [
+    {
+        "name" : "Iowa",
+        "abbreviation" : "IA",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "open",
+            "delegates" : 52
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 30
+        }
+    },
+    {
+        "name" : "New Hampshire",
+        "abbreviation" : "NH",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "delegates" : 32
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "allocation" : "p",
+            "delegates" : 23
+        }
+    },
+    {
+        "name" : "Nevada",
+        "abbreviation" : "NV",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "delegates" : 43
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 30
+        }
+    },
+    {
+        "name" : "South Carolina",
+        "abbreviation" : "SC",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 43
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "wtm",
+            "delegates" : 30
+        }
+    },
+    {
+        "name" : "Alabama",
+        "abbreviation" : "AL",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 60
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 50
+        }
+    },
+    {
+        "name" : "Alaska",
+        "abbreviation" : "AK",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "delegates" : 20
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 28
+        }
+    },
+    {
+        "name" : "American Samoa",
+        "abbreviation" : "AS",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "open",
+            "delegates" : 10
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "open",
+            "allocation" : "unbound",
+            "delegates" : 9
+        }
+    },
+    {
+        "name" : "Arkansas",
+        "abbreviation" : "AR",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 37
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 40
+        }
+    },
+    {
+        "name" : "Colorado",
+        "abbreviation" : "CO",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "delegates" : 79
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "unbound",
+            "delegates" : 37
+        }
+    },
+    {
+        "name" : "Georgia",
+        "abbreviation" : "GA",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 116
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 76
+        }
+    },
+    {
+        "name" : "Massachusetts",
+        "abbreviation" : "MA",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "delegates" : 116
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "allocation" : "p",
+            "delegates" : 42
+        }
+    },
+    {
+        "name" : "Minnesota",
+        "abbreviation" : "MA",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "open",
+            "delegates" : 93
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 38
+        }
+    },
+    {
+        "name" : "North Dakota",
+        "abbreviation" : "ND",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "delegates" : 23
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "unbound",
+            "delegates" : 28
+        }
+    },
+    {
+        "name" : "Oklahoma",
+        "abbreviation" : "OK",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 42
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 43
+        }
+    },
+    {
+        "name" : "Tennessee",
+        "abbreviation" : "TN",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 76
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 58
+        }
+    },
+    {
+        "name" : "Texas",
+        "abbreviation" : "TX",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 252
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 155,
+            "special" : "If winner gets at least 50% than winner-take-all."
+        }
+    },
+    {
+        "name" : "Vermont",
+        "abbreviation" : "VT",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 26
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 16
+        }
+    },
+    {
+        "name" : "Virginia",
+        "abbreviation" : "VA",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 110
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 49
+        }
+    },
+    {
+        "name" : "Kansas",
+        "abbreviation" : "KS",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "delegates" : 37
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 40
+        }
+    },
+    {
+        "name" : "Kentucky",
+        "abbreviation" : "KY",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 61
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 45
+        }
+    },
+    {
+        "name" : "Louisiana",
+        "abbreviation" : "LA",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 58
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 47
+        }
+    },
+    {
+        "name" : "Maine",
+        "abbreviation" : "ME",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "delegates" : 30
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 23
+        }
+    },
+    {
+        "name" : "Nebraska",
+        "abbreviation" : "NE",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "delegates" : 30
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 36
+        }
+    },
+    {
+        "name" : "Puerto Rico",
+        "abbreviation" : "PR",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 67
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 23
+        }
+    },
+    {
+        "name" : "Hawaii",
+        "abbreviation" : "HI",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "delegates" : 34
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 19
+        }
+    },
+    {
+        "name" : "Idaho",
+        "abbreviation" : "ID",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 27
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 32
+        }
+    },
+    {
+        "name" : "Michigan",
+        "abbreviation" : "MI",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 148
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 59
+        }
+    },
+    {
+        "name" : "Mississippi",
+        "abbreviation" : "MS",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 41
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 40
+        }
+    },
+    {
+        "name" : "Virgin Islands",
+        "abbreviation" : "VI",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "open",
+            "delegates" : 12
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "open",
+            "allocation" : "unbound",
+            "delegates" : 9
+        }
+    },
+    {
+        "name" : "Guam",
+        "abbreviation" : "GU",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 12
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "unbound",
+            "delegates" : 9
+        }
+    },
+    {
+        "name" : "Northern Marianas",
+        "abbreviation" : "MP",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "open",
+            "delegates" : 11
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "wta",
+            "delegates" : 9
+        }
+    },
+    {
+        "name" : "District of Columbia",
+        "abbreviation" : "DC",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 46
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 19
+        }
+    },
+    {
+        "name" : "Wyoming",
+        "abbreviation" : "WY",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "delegates" : 18
+        },
+        "republican" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 12
+        }
+    },
+    {
+        "name" : "Florida",
+        "abbreviation" : "FL",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 246
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "wta",
+            "delegates" : 99
+        }
+    },
+    {
+        "name" : "Illinois",
+        "abbreviation" : "IL",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 182
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 69
+        }
+    },
+    {
+        "name" : "Missouri",
+        "abbreviation" : "MO",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 84
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "p",
+            "delegates" : 52
+        }
+    },
+    {
+        "name" : "North Carolina",
+        "abbreviation" : "MO",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "delegates" : 121
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "allocation" : "p",
+            "delegates" : 72
+        }
+    },
+    {
+        "name" : "Ohio",
+        "abbreviation" : "OH",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "delegates" : 159
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "allocation" : "wta",
+            "delegates" : 66
+        }
+    },
+    {
+        "name" : "Arizona",
+        "abbreviation" : "AZ",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 85
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "wta",
+            "delegates" : 58
+        }
+    },
+    {
+        "name" : "Utah",
+        "abbreviation" : "UT",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 37
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 40
+        }
+    },
+    {
+        "name" : "Washington",
+        "abbreviation" : "WA",
+        "democratic" : {
+            "method" : "caucus",
+            "type" : "closed",
+            "delegates" : 118
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 44
+        }
+    },
+    {
+        "name" : "Wisconsin",
+        "abbreviation" : "WI",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 96
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "wtm",
+            "delegates" : 42
+        }
+    },
+    {
+        "name" : "New York",
+        "abbreviation" : "NY",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 291
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 95
+        }
+    },
+    {
+        "name" : "Connecticut",
+        "abbreviation" : "CT",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 70
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 28
+        }
+    },
+    {
+        "name" : "Delaware",
+        "abbreviation" : "DE",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 31
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "wta",
+            "delegates" : 16
+        }
+    },
+    {
+        "name" : "Maryland",
+        "abbreviation" : "MD",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 118
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "wta",
+            "delegates" : 38
+        }
+    },
+    {
+        "name" : "Pennsylvania",
+        "abbreviation" : "PA",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 210
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 71
+        }
+    },
+    {
+        "name" : "Rhode Island",
+        "abbreviation" : "RI",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "delegates" : 33
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 19
+        }
+    },
+    {
+        "name" : "Indiana",
+        "abbreviation" : "IN",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 92
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "wta",
+            "delegates" : 57
+        }
+    },
+    {
+        "name" : "West Virginia",
+        "abbreviation" : "WV",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "delegates" : 37
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "allocation" : "p",
+            "delegates" : 34
+        }
+    },
+    {
+        "name" : "Oregon",
+        "abbreviation" : "OR",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 73
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "p",
+            "delegates" : 28
+        }
+    },
+    {
+        "name" : "California",
+        "abbreviation" : "CA",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "delegates" : 546
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "allocation" : "p",
+            "delegates" : 172
+        }
+    },
+    {
+        "name" : "Montana",
+        "abbreviation" : "CA",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "open",
+            "delegates" : 27
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "open",
+            "allocation" : "wta",
+            "delegates" : 27
+        }
+    },
+    {
+        "name" : "New Jersey",
+        "abbreviation" : "NJ",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "delegates" : 142
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "allocation" : "wta",
+            "delegates" : 51
+        }
+    },
+    {
+        "name" : "New Mexico",
+        "abbreviation" : "NJ",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "delegates" : 43
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "mixed",
+            "allocation" : "p",
+            "delegates" : 24
+        }
+    },
+    {
+        "name" : "South Dakota",
+        "abbreviation" : "SD",
+        "democratic" : {
+            "method" : "primary",
+            "type" : "closed",
+            "delegates" : 25
+        },
+        "republican" : {
+            "method" : "primary",
+            "type" : "closed",
+            "allocation" : "wta",
+            "delegates" : 29
+        }
+    },
+]}
