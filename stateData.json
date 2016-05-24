@@ -1,4 +1,4 @@
-{ "states" : [
+{ "states" :
     {
         "name" : "Iowa",
         "abbreviation" : "IA",
@@ -841,4 +841,4 @@
             "delegates" : 29
         }
     },
-]}
+}

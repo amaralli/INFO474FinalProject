@@ -15,7 +15,7 @@
     </head>
 
     <body class="container" ng-app="explanation">
-        <div ng-controller="test">
+        <div ng-controller="StateSelectController">
             <h1>THIS IS A TEST PAGE WITH NAV ELEMENTS AND TEXT =D </h1>
             
             <h3>Does your vote count?</h3>
@@ -43,9 +43,16 @@
                             <li><a href="#">Separated link</a></li>
                         </ul>
                     </div>
+
+                    <select class="form-control" ng-model="currentState" ng-change="selectState(currentState)" required>
+                        <option value="">Select State</option>
+                        <option ng-repeat="state in states" value="{{state}}">{{state.name}}</option>
+                    </select>
                 </div>
             </div>
             <!--Boostrap dropdown for selecting state-->
+
+            <h3 ng-model="currentState">You have said that you are from this state: {{currentState.name}}</h3>
             
             <!--Prompt users to register (need to talk about new windown or refresh page)-->
             <h3>Not registered?</h3>
