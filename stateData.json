@@ -702,7 +702,8 @@
             "method" : "primary",
             "type" : "closed",
             "allocation" : "p",
-            "delegates" : 71
+            "delegates" : 71,
+            "special" : "Look up later Nick"
         }
     },
     {

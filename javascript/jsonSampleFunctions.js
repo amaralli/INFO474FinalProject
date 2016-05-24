@@ -1,4 +1,17 @@
+/*
+ALLOCATION:
+wta = winner-take-all
+wtm = winner-take-most
+p = proportional
+unbound = unbound
+Some republican objects have special rules. See Texas for example.
 
+METHOD:
+caucus, primary
+
+TYPE:
+open, closed, mixed
+*/
 
 var getStateByName = function(data, stateName) {
     return getStateByAbbreviation(data, "name", stateName);
