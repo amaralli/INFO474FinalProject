@@ -1,8 +1,10 @@
 var drawMap;
 var generatePath;
 
+var data;
+
 $(function() {
-    var width = 850;
+    var width = 1000;
     var height = 500;
 
     var svg = d3.select("#vis").append("svg")
@@ -10,7 +12,9 @@ $(function() {
         .attr("height", height);
 
     d3.json('gz_2010_us_040_00_20m.json', function(error, shape) {
-        var projection = d3.geo.mercator().scale(1).translate([0,0]).precision(0);
+        data = shape;
+        console.log(data);
+        var projection = d3.geo.albersUsa().scale(1).translate([0,0]).precision(0);
         var path = d3.geo.path().projection(projection);
         var bounds = path.bounds(shape)
 
