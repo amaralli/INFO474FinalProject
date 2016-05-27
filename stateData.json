@@ -1,4 +1,4 @@
-{ "states" :
+{ "states" : [
     {
         "name" : "Iowa",
         "abbreviation" : "IA",
@@ -840,5 +840,5 @@
             "allocation" : "wta",
             "delegates" : 29
         }
-    },
-}
+    }
+]}

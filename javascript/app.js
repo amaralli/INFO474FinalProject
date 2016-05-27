@@ -12,7 +12,7 @@ angular.module('explanation', [])
     	//populates the drop down
     	$http.get('stateData.json')
     		.success(function(data) {
-    			$scope.states = data[0];
+    			$scope.states = data.states;
     		})
     		.error(function() {
     			console.log("Failed to load JSON")
@@ -23,4 +23,4 @@ angular.module('explanation', [])
     		$scope.currentState = selectedState;
     	}
 
-    }); 
+    });

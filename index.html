@@ -3,34 +3,34 @@
     <head>
     	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta charset="UTF-8">
-        
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.1/angular.min.js"></script>
     	<script src="javascript/app.js"></script>
         <link rel= "stylesheet" href="main.css">
-        
+
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,900,500italic' rel='stylesheet' type='text/css'>
-        
+
       <title>Where does my vote go?</title>
     </head>
 
     <body class="container" ng-app="explanation">
         <div ng-controller="StateSelectController">
             <h1>THIS IS A TEST PAGE WITH NAV ELEMENTS AND TEXT =D </h1>
-            
+
             <h3>Does your vote count?</h3>
-            
+
             <p>If you are a US resident of voting age, you’ve certainly heard people complain about the perceived un-impactfulness of their vote. We have created a tool which allows anyone to follow a vote from the start of the caucuses and primaries, up until the general election. Play around with it, and then make up your own mind as to whether your vote really is as un-impactful as it may seem.</p>
 
             <p>Of course your vote can only be meaningful if you are legally able to in the first place. If you are above the age of 18 and are not currently a registered voter, please do so!</p>
 
             <p>As is with the complicate democratic process the US uses, every state conducts their delegate-allotment processes slightly differently. Thus, we need to know which state you are currently from before we proceed.</p>
-                        
-            
+
+
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h4>Which State are you currently registered to vote in?</h4>
-                    
+
                     <div class="btn-group">
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             State <span class="caret"></span>
@@ -53,12 +53,14 @@
             <!--Boostrap dropdown for selecting state-->
 
             <h3 ng-model="currentState">You have said that you are from this state: {{currentState.name}}</h3>
-            
+
+            <div id="vis"></div>
+
             <!--Prompt users to register (need to talk about new windown or refresh page)-->
             <h3>Not registered?</h3>
             <a href="https://vote.usa.gov/" class="btn btn-primary btn-lg active" role="button" target="_blank">Register Here Now</a>
-            
-            
+
+
             <!--Button group to select party affiliation-->
             <h3>Are you registered with a party?</h3>
             <div class="btn-group" role="group" aria-label="...">
@@ -68,7 +70,7 @@
             </div>
             </br>
             </br>
-            
+
             <p>Your state is open: Voters do not need to be registered with the party they plan to vote for the primary/caucus, although they must chose only one party to caucus/primary for.</p>
 
             <p>Your state is semi-open:</p>
@@ -83,7 +85,7 @@
             <p>Your state is Winner Take Most (WTM): Some delegates are reserved for the winner of the primary/caucus, and others are divided proportionally to the outcome of vote.</p>
 
             <p>Your state is proportional: Delegates are allotted proportionally to the outcome of the primary or caucus.</p>
-            
+
             <!--button group to toggle between explore options-->
             <h3>Explore others:</h3>
             <div class="btn-group" role="group" aria-label="...">
@@ -92,10 +94,10 @@
                 <button type="button" class="btn btn-default">Semi-Closed</button>
                 <button type="button" class="btn btn-default">Closed</button>
             </div>
-            
-            
+
+
         </div>
-        
-        
+
+
     </body>
 </html>
