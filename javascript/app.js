@@ -8,6 +8,10 @@ angular.module('explanation', [])
     	$scope.currentState = "";
     	//all states
     	$scope.states = "";
+        //have they begun the experience yet?
+        $scope.firstStart = true;
+        //party selection
+        $scope.partySelection = "";
 
     	//populates the drop down
     	$http.get('stateData.json')
@@ -21,9 +25,14 @@ angular.module('explanation', [])
 
     	//changes the state the user has selected every time they select something from the drop down.
     	$scope.selectState = function(selectedState) {
-    		$scope.currentState = selectedState;
-			console.log($scope.currentState);
+    		$scope.currentState = JSON.parse(selectedState);
+            console.log($scope.currentState)
     	}
+
+        //starts the experience
+        $scope.beginExperience = function() {
+            $scope.firstStart = false;
+        }
 		
 		$scope.methodWeird = function(selectedState) {
 			console.log(selectedState +'hey');
@@ -34,6 +43,11 @@ angular.module('explanation', [])
 				return false;
 			}
 		}
+
+        $scope.selectParty = function(partyName) {
+            console.log("OOOOOOO " + partyName)
+            $scope.partySelection = partyName;
+        }
 		
 		console.log($scope.currentState);
 		//console.log(selectedState);

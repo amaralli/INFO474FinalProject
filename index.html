@@ -6,9 +6,13 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.1/angular.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 
     	<script src="javascript/app.js"></script>
         <script src="javascript/map.js"></script>
@@ -21,84 +25,79 @@
 
     <body class="container" ng-app="explanation">
         <div ng-controller="StateSelectController">
-            <h1>THIS IS A TEST PAGE WITH NAV ELEMENTS AND TEXT =D </h1>
+            <div id="intro" ng-show="firstStart">
+            <h2>Does your vote count?</h2>
 
-            <h3>Does your vote count?</h3>
+                <p>If you are a US resident of voting age, you’ve certainly heard people complain about the perceived un-impactfulness of their vote. We have created a tool which allows anyone to follow a vote from the start of the caucuses and primaries, up until the general election. Play around with it, and then make up your own mind as to whether your vote really is as un-impactful as it may seem.</p>
 
-            <p>If you are a US resident of voting age, you’ve certainly heard people complain about the perceived un-impactfulness of their vote. We have created a tool which allows anyone to follow a vote from the start of the caucuses and primaries, up until the general election. Play around with it, and then make up your own mind as to whether your vote really is as un-impactful as it may seem.</p>
+                <p>Of course your vote can only be meaningful if you are legally able to in the first place. If you are above the age of 18 and are not currently a registered voter, please do so!</p>
 
-            <p>Of course your vote can only be meaningful if you are legally able to in the first place. If you are above the age of 18 and are not currently a registered voter, please do so!</p>
+                <p>As is with the complicate democratic process the US uses, every state conducts their delegate-allotment processes slightly differently. Thus, we need to know which state you are currently from before we proceed.</p>
 
-            <p>As is with the complicate democratic process the US uses, every state conducts their delegate-allotment processes slightly differently. Thus, we need to know which state you are currently from before we proceed.</p>
+                <button class="btn-large center-align" ng-click="beginExperience()">Let's see!</button>
 
+            </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h4>Which State are you currently registered to vote in?</h4>
+            <div  ng-hide="firstStart">
+                <div class="state-question center-align">
+                    <h4>Which state are you currently registered to vote in?</h4>
 
-                    <div class="btn-group">
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </div>
-
-                    <select class="form-control" ng-model="currentState" ng-change="selectState(currentState)" required>
+                    <select class="form-control" ng-model="stateSelector" ng-change="selectState(stateSelector)" required>
                         <option value="">Select State</option>
                         <option ng-repeat="state in states" value="{{state}}">{{state.name}}</option>
                     </select>
+
+                    <!--Prompt users to register (need to talk about new windown or refresh page)-->
+                    <p>Not registered? <a href="https://vote.usa.gov/" role="button">Register here.</a></p>
+
+                    <h3>Which party are you registered in?</h3>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn" ng-click="selectParty('republican')">Republican</button>
+                        <button type="button" class="btn" ng-click="selectParty('democratic')">Democratic</button>
+                        <button type="button" class="btn" ng-click="selectParty('independent')">Independent</button>
+                        <button type="button" class="btn btn-default" ng-click="selectParty('none')">None</button>
+                    </div>
+                    </br>
+                    </br>
+                    
                 </div>
+
+                <div ng-hide="currentState == '' || partySelection == ''">
+
+
+                    <!--Button group to select party affiliation-->
+                   
+
+                    <p ng-if="currentState[partySelection].type== 'open'">Your state is open: Voters do not need to be registered with the party they plan to vote for the primary/caucus, although they must chose only one party to caucus/primary for.</p>
+
+                    <p ng-if="currentState[partySelection].type=='mixed'">Your state is mixed:</p>
+
+                    <p ng-model="currentState">Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
+
+                    <p ng-if="currentState[partySelection].type=='closed'">Your state is closed: Voters need to be registered with the party the plan to vote for in the caucus/primaries.</p>
+
+                    <p ng-if="currentState.republican.allocation=='unbound'">Your state is Winner Take All (WTA): All delegates are allotted to the winner of the primary/caucus.</p>
+
+                    <!--(should we say per state how the amount reserved for winner?)-->
+                    <!-- <p>Your state is Winner Take Most (WTM): Some delegates are reserved for the winner of the primary/caucus, and others are divided proportionally to the outcome of vote.</p> -->
+
+                    <p ng-if="currentState.republican.allocation=='p'">Your state is proportional: Delegates are allotted proportionally to the outcome of the primary or caucus.</p>
+
+                    <p ng-model="currentState">Your party in this state holds a {{currentState[partySelection].method}} type of election</p>
+
+                    <!--button group to toggle between explore options-->
+                    <h3>Explore others:</h3>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">Open</button>
+                        <button type="button" class="btn btn-default">Semi-Open</button>
+                        <button type="button" class="btn btn-default">Semi-Closed</button>
+                        <button type="button" class="btn btn-default">Closed</button>
+                    </div>
+
+                    <div id="vis"></div>
+                </div>
+
             </div>
-            <!--Boostrap dropdown for selecting state-->
-
-            <h3 ng-model="currentState">You have said that you are from this state: {{currentState.name}}</h3>
-
-            <div id="vis"></div>
-
-            <!--Prompt users to register (need to talk about new windown or refresh page)-->
-            <h3>Not registered?</h3>
-            <a href="https://vote.usa.gov/" class="btn btn-primary btn-lg active" role="button" target="_blank">Register Here Now</a>
-
-
-            <!--Button group to select party affiliation-->
-           
-            
-            <h3>Are you registered with a party?</h3>
-            <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-default">Republican</button>
-                <button type="button" class="btn btn-default">Democratic</button>
-                <button type="button" class="btn btn-default">Independent</button>
-            </div>
-            </br>
-            </br>
-
-            <p ng-if="currentState.democratic.type==\'open\'">Your state is open: Voters do not need to be registered with the party they plan to vote for the primary/caucus, although they must chose only one party to caucus/primary for.</p>
-
-            <p ng-if="currentState.democratic.type==\'mixed\'">Your state is mixed:</p>
-
-            <p ng-model="currentState">Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
-
-            <p ng-if="currentState.democratic.type==\'closed\'">Your state is closed: Voters need to be registered with the party the plan to vote for in the caucus/primaries.</p>
-
-            <p ng-if="currentState.republican.allocation==\'unbound\'">Your state is Winner Take All (WTA): All delegates are allotted to the winner of the primary/caucus.</p>
-
-            <!--(should we say per state how the amount reserved for winner?)-->
-            <p>Your state is Winner Take Most (WTM): Some delegates are reserved for the winner of the primary/caucus, and others are divided proportionally to the outcome of vote.</p>
-
-            <p ng-if="currentState.republican.allocation==\'p\'">Your state is proportional: Delegates are allotted proportionally to the outcome of the primary or caucus.</p>
-
-            <!--button group to toggle between explore options-->
-            <h3>Explore others:</h3>
-            <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-default">Open</button>
-                <button type="button" class="btn btn-default">Semi-Open</button>
-                <button type="button" class="btn btn-default">Semi-Closed</button>
-                <button type="button" class="btn btn-default">Closed</button>
-            </div>
-
 
         </div>
 

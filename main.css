@@ -1,14 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,900,500italic);
 
-.container {
-    font-family: 'Roboto';
+.state-question {
+	width:85%;
+	margin-left:15%;
+	padding: 5%;
+	padding-left, padding-right: 10%
 }
 
-.panel-body {
-    text-align: center;
-     /*width: 300px;*/
+.state-question h4 {
+	margin-top: 0;
 }
 
-.panel-default {
-    width: 300px;
+.state-question p {
+	font-size: 12pt;
+}
+
+p {
+	font-size: 15pt;
 }
