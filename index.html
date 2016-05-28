@@ -67,6 +67,8 @@
 
 
             <!--Button group to select party affiliation-->
+           
+            
             <h3>Are you registered with a party?</h3>
             <div class="btn-group" role="group" aria-label="...">
                 <button type="button" class="btn btn-default">Republican</button>
@@ -76,20 +78,20 @@
             </br>
             </br>
 
-            <p>Your state is open: Voters do not need to be registered with the party they plan to vote for the primary/caucus, although they must chose only one party to caucus/primary for.</p>
+            <p ng-if="currentState.democratic.type==\'open\'">Your state is open: Voters do not need to be registered with the party they plan to vote for the primary/caucus, although they must chose only one party to caucus/primary for.</p>
 
-            <p>Your state is semi-open:</p>
+            <p ng-if="currentState.democratic.type==\'mixed\'">Your state is mixed:</p>
 
-            <p>Your state is semi-closed:</p>
+            <p ng-model="currentState">Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
 
-            <p>Your state is closed: Voters need to be registered with the party the plan to vote for in the caucus/primaries.</p>
+            <p ng-if="currentState.democratic.type==\'closed\'">Your state is closed: Voters need to be registered with the party the plan to vote for in the caucus/primaries.</p>
 
-            <p>Your state is Winner Take All (WTA): All delegates are allotted to the winner of the primary/caucus.</p>
+            <p ng-if="currentState.republican.allocation==\'unbound\'">Your state is Winner Take All (WTA): All delegates are allotted to the winner of the primary/caucus.</p>
 
             <!--(should we say per state how the amount reserved for winner?)-->
             <p>Your state is Winner Take Most (WTM): Some delegates are reserved for the winner of the primary/caucus, and others are divided proportionally to the outcome of vote.</p>
 
-            <p>Your state is proportional: Delegates are allotted proportionally to the outcome of the primary or caucus.</p>
+            <p ng-if="currentState.republican.allocation==\'p\'">Your state is proportional: Delegates are allotted proportionally to the outcome of the primary or caucus.</p>
 
             <!--button group to toggle between explore options-->
             <h3>Explore others:</h3>

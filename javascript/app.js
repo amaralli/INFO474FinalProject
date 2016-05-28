@@ -13,6 +13,7 @@ angular.module('explanation', [])
     	$http.get('stateData.json')
     		.success(function(data) {
     			$scope.states = data.states;
+				console.log($scope.states);
     		})
     		.error(function() {
     			console.log("Failed to load JSON")
@@ -21,6 +22,20 @@ angular.module('explanation', [])
     	//changes the state the user has selected every time they select something from the drop down.
     	$scope.selectState = function(selectedState) {
     		$scope.currentState = selectedState;
+			console.log($scope.currentState);
     	}
+		
+		$scope.methodWeird = function(selectedState) {
+			console.log(selectedState +'hey');
+			if(selectedState.democratic.method != selectedState.republican.method) {
+				$scope.weirdState = selectedState;
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		console.log($scope.currentState);
+		//console.log(selectedState);
 
     });
