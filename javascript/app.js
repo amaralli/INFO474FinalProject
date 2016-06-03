@@ -33,7 +33,7 @@ angular.module('explanation', [])
         $scope.beginExperience = function() {
             $scope.firstStart = false;
         }
-		
+
 		$scope.methodWeird = function(selectedState) {
 			console.log(selectedState +'hey');
 			if(selectedState.democratic.method != selectedState.republican.method) {
@@ -48,8 +48,9 @@ angular.module('explanation', [])
             console.log("OOOOOOO " + partyName)
             $scope.partySelection = partyName;
         }
-		
+
 		console.log($scope.currentState);
 		//console.log(selectedState);
 
+        //var bubbles = Bubbles();
     });
