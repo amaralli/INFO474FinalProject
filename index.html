@@ -17,6 +17,8 @@
     	<script src="javascript/app.js"></script>
         <script src="javascript/map.js"></script>
         <script src="javascript/pieChart.js"></script>
+        <script src="javascript/bubbles.js"></script>
+        <script src="javascript/runnable.js"></script>
         <link rel= "stylesheet" href="main.css">
 
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,900,500italic' rel='stylesheet' type='text/css'>
@@ -39,6 +41,8 @@
 
             </div>
 
+            <div id="bubbles"></div>
+
             <div  ng-hide="firstStart">
                 <div class="state-question center-align">
                     <h4>Which state are you currently registered to vote in?</h4>
@@ -60,14 +64,14 @@
                     </div>
                     </br>
                     </br>
-                    
+
                 </div>
 
                 <div ng-hide="currentState == '' || partySelection == ''">
 
 
                     <!--Button group to select party affiliation-->
-                   
+
 
                     <p ng-if="currentState[partySelection].type== 'open'">Your state is open: Voters do not need to be registered with the party they plan to vote for the primary/caucus, although they must chose only one party to caucus/primary for.</p>
 
