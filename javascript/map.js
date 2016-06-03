@@ -11,6 +11,15 @@ $(function() {
         .attr("width", width)
         .attr("height", height);
 
+    // var tip = d3.tip()
+    //     .attr('class', 'd3-tip')
+    //     .offset([-10, 0])
+    //     .html(function(d) {
+    //         return "<span>" + d.state + "</span>";
+    //     })
+
+    //svg.call(tip);
+
     d3.json('gz_2010_us_040_00_20m.json', function(error, shape) {
         data = shape;
         console.log(data);
@@ -26,13 +35,15 @@ $(function() {
 
         projection.scale(scale).translate(transl);
 
-
-
         var paths = svg.selectAll("path")
             .data(shape.features).enter().append("path")
             .attr("d", path)
             .style("fill", "none")
-            .style("stroke", "black");
+            .style("stroke", "black")
+            //.on('mouseover', tip.show)
+            //.on('mouseout', tip.hide)
+
+
     });
 
 })

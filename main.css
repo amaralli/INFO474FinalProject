@@ -59,25 +59,35 @@ form {
 	//width:10%
 }*/
 
+#firstSet {
+	float:left;
+	width:100%;
+}
+
+#secondSet {
+	float:left;
+	width:100%;
+}
+
 #pie2 {
     float: left; 
-    width: 25%;
+    width: 50%;
     
 }
 
 #pie1 { 
     float: left;  
-    width: 25%;
+    width: 50%;
 }
 
 #pie4{
     float: left;
-    width: 25%;    
+    width: 50%;    
 }
 
 #pie3{
     float: left;
-    width: 25%;    
+    width: 50%;    
 }
 
 #tooltip {

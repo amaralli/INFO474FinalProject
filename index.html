@@ -92,6 +92,9 @@
 
                             <div id="bubbles"></div>
 
+                            <button type="button" class="btn" onclick="bubbleChart.sort()">Sort (WIP)</button>
+
+
                             <p>The blue bubbles represent registered Democrats, the red bubbles represent registered Republicans, and the green bubbles represent everyone else.</p>
 
                             <p ng-if="currentState[partySelection].type=='closed'">Your state is closed, so you can see that all the blue bubbles can only go to the Democratic voting areas, and are not allowed into the Republican voting areas. The reverse is true for the red bubbles. The green bubbles are not registered for either, and cannot vote in either party.</p>
@@ -148,6 +151,7 @@
 
                             <h4 id="pieTitle">How much of an impact do the delegates my state pick have on the candidate that will make it into the general election?</h4>
 
+
                             <p ng-model="currentState"> Every state has a certain number of delegates used, to represent the population of your state compared to population of the United States as a whole. If you live in a heavily populated state, you will have more delegates than a sparsely-populated state. Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
                         
                             <div id="tooltip" class="hidden">
@@ -155,14 +159,18 @@
                                 </p>
                                 <p><span id="value">100</span>%</p>
                             </div>
-                                            
+
                             <div id="wrapper">
-                                <p id="titleRep">Republican</p>
-                                <div id="pie1"></div>
-                                <div id="pie2"></div>
-                                <p id="titleDem">Democrat</p>
-                                <div id="pie3"></div>
-                                <div id="pie4"></div>
+                                <div id="firstSet"><p id="titleRep">Republican:</p>
+                                    <div id="pie1"></div>
+                                    <div id="pie2"></div>
+                                </div>
+                                <div id="secondSet">
+                                    <p id="titleDem">Democrat:</p>
+                                    <div id="pie3"></div>
+                                    <div id="pie4"></div>
+                                </div>
+                                <div id="vis"></div>
                             </div>
                         </div>
 

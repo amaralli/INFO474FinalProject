@@ -1,7 +1,7 @@
-var charthing;
+var bubbleChart;
 
 $(function() {
-    charthing = Bubbles();
+    bubbleChart = Bubbles();
     var data = [];
     var total = 120;
     for (var i = 0; i < total; i++) {
@@ -18,9 +18,9 @@ $(function() {
         data.push(temp);
     }
 
-    charthing.setSelector('#bubbles');
-    charthing.setData(data);
-    charthing.setDimensions(1000, 500);
-    charthing.build();
-    console.log(charthing);
+    bubbleChart.setSelector('#bubbles');
+    bubbleChart.setData(data);
+    bubbleChart.setDimensions(1000, 500);
+    bubbleChart.build();
+    console.log(bubbleChart);
 });
