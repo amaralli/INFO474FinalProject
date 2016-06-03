@@ -11,6 +11,10 @@ $(function() {
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
+        
+   var arcOver = d3.svg.arc()
+      .innerRadius(0)
+      .outerRadius(radius + 2);
 
     var labelArc = d3.svg.arc()
         .outerRadius(radius - 40)
@@ -36,10 +40,29 @@ $(function() {
         .style("fill", function(d) {return color(d.data.RepImpact);});
 
     g.append("path")
-        .attr("d", arc);
+        .attr("d", arc)
+        .on("mouseover", function(d) {
+        d3.select(this).transition()
+          .duration(1000)
+          .attr("d", arcOver);
+        d3.select("#tooltip")
+         .style("left", d3.event.pageX + "px")
+         .style("top", d3.event.pageY + "px")
+         .style("opacity", 1)
+         .select("#value")
+         .text(d.Abbreviation);
+      })
+      
+      .on("mouseout", function(d) {
+        d3.select(this).transition()
+          .duration(1000)
+          .attr("d", arc);
+          d3.select("#tooltip")
+          .style("opacity", 0);;
+      });
         
     g.append("title")
-        .text(function(d) { return d.data.Abbreviation; });   
+        .text(function(d) { return d.data.State; });   
          
     g.append("text")
         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
@@ -71,6 +94,10 @@ $(function() {
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
+        
+   var arcOver = d3.svg.arc()
+      .innerRadius(0)
+      .outerRadius(radius + 2);
 
     var labelArc = d3.svg.arc()
         .outerRadius(radius - 40)
@@ -96,9 +123,19 @@ $(function() {
         .style("fill", function(d) {return color(d.data.NeedRep);});
 
     g.append("path")
-        .attr("d", arc);
+        .attr("d", arc)
+        .on("mouseover", function(d) {
+        d3.select(this).transition()
+          .duration(1000)
+          .attr("d", arcOver);
+      })
+      .on("mouseout", function(d) {
+        d3.select(this).transition()
+          .duration(1000)
+          .attr("d", arc);
+      });
         
-    g.append("title")
+    g.append("svg:title")
         .text(function(d) { return d.data.NeedRep; });   
          
     g.append("text")
@@ -133,6 +170,10 @@ $(function() {
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
+    
+    var arcOver = d3.svg.arc()
+      .innerRadius(0)
+      .outerRadius(radius + 2);
 
     var labelArc = d3.svg.arc()
         .outerRadius(radius - 40)
@@ -158,10 +199,20 @@ $(function() {
         .style("fill", function(d, i) {return color(i);});
 
     g.append("path")
-        .attr("d", arc);
+        .attr("d", arc)
+        .on("mouseover", function(d) {
+        d3.select(this).transition()
+          .duration(1000)
+          .attr("d", arcOver);
+      })
+      .on("mouseout", function(d) {
+        d3.select(this).transition()
+          .duration(1000)
+          .attr("d", arc);
+      });
         
     g.append("title")
-        .text(function(d) { return d.data.Abbreviation; });   
+        .text(function(d) { return d.data.State; });   
          
     g.append("text")
         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
@@ -193,6 +244,10 @@ $(function() {
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
+   
+   var arcOver = d3.svg.arc()
+      .innerRadius(0)
+      .outerRadius(radius + 2);
 
     var labelArc = d3.svg.arc()
         .outerRadius(radius - 40)
@@ -218,7 +273,17 @@ $(function() {
         .style("fill", function(d) {return color(d.data.NeedRep);});
 
     g.append("path")
-        .attr("d", arc);
+        .attr("d", arc)
+        .on("mouseover", function(d) {
+        d3.select(this).transition()
+          .duration(1000)
+          .attr("d", arcOver);
+      })
+      .on("mouseout", function(d) {
+        d3.select(this).transition()
+          .duration(1000)
+          .attr("d", arc);
+      });
         
     g.append("title")
         .text(function(d) { return d.data.PercentDem; });   
