@@ -9,39 +9,70 @@ window.Bubbles = (function() {
             right: 50
         }
 
+        bubbles.data;
+        bubbles.canvasSelector;
+
         bubbles.canvasHeight;
         bubbles.canvasWidth;
 
         bubbles.chartHeight;
         bubbles.chartWidth;
 
-        bubbles.canvasSelector;
+        bubbles.rowSize = 10;
+        bubbles.bubbleRadius = 10;
+
+        bubbles.bubs;
 
         bubbles.build = function() {
-            if (this.canvasSelector == undefined || this.chartWidth == undefined || this.chartHeight == undefined) {
+            if (this.canvasSelector == undefined || this.canvasWidth == undefined || this.canvasHeight == undefined || this.data == undefined) {
                 console.log("Not all required fields have been set yet.");
                 return this;
             }
 
             this.finalCalculations();
 
-            var canvasSvg = d3.selectAll(bubbles.canvasSelector)
+            var canvasSvg = d3.selectAll(this.canvasSelector)
                 .append('svg')
-                .attr('height', heatmap.canvasHeight)
-                .attr('width', heatmap.canvasWidth);
+                .attr('height', this.canvasHeight)
+                .attr('width', this.canvasWidth);
 
             var chartG = canvasSvg.append('g')
-                .attr('transform', 'translate(' + heatmap.margin.left + ',' + heatmap.margin.top + ')');
+                .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 
-            var bubs = chartG.selectAll('circle').data(data);
+            this.bubs = chartG.selectAll('circle').data(this.data);
 
-            bubs.enter().append('circle')
-                .attr('r', function(d) { return 7 })
-                .style('fill', 'black')
-                .attr('cx', function(d, i) { return (7 + 3 * (i % 10)) })
-                .attr('cy', function(d, i) { return (7 + 3 * (i % 12)) })
+            this.bubs.enter().append('circle')
+                .attr('r', 10)
+                .style('fill', 'none')
+                .attr('cx', function(d, i) { return ((10 + 15) * (i % 15)) })
+                .attr('cy', function(d, i) { return ((10 + 15) * ((Math.floor(i / 15)) - 1)) })
+
+            this.bubs.transition()
+                .duration(100)
+                .delay(function(d, i) { return i * 50 })
+                .style('fill', function(d) { return bubbles.determineColor(d) } )
+                .attr('cx', function(d, i) { return ((10 + 15) * (i % 15)) })
+                .attr('cy', function(d, i) { return ((10 + 15) * (Math.floor(i / 15))) })
 
             return this;
+        }
+
+        bubbles.sort = function() {
+            this.bubs.transition()
+                .duration(1000)
+                .attr('cy', function(d, i ) { return ((10 + 15) * (Math.floor(i / 15)) + 70 * bubbles.determineBucket(d))  })
+        }
+
+        bubbles.determineBucket = function(dataPoint) {
+            if (dataPoint.type == 'democratic') {
+                return 0;
+            } else if (dataPoint.type == 'republican') {
+                return 1;
+            } else if (dataPoint.type == 'independent') {
+                return 2;
+            } else {
+                return 3;
+            }
         }
 
         bubbles.finalCalculations = function() {
@@ -76,6 +107,30 @@ window.Bubbles = (function() {
             this.canvasHeight = height;
 
             return this;
+        }
+
+        bubbles.setData = function(data) {
+            this.data = data;
+
+            return this;
+        }
+
+        bubbles.setRowSize = function(rowSize) {
+            this.rowSize = rowSize;
+
+            return this;
+        }
+
+        bubbles.determineColor = function(dataPoint) {
+            if (dataPoint.type == 'democratic') {
+                return 'blue';
+            } else if (dataPoint.type == 'republican') {
+                return 'red';
+            } else if (dataPoint.type == 'independent') {
+                return 'green';
+            } else {
+                return 'black';
+            }
         }
 
         return bubbles;
