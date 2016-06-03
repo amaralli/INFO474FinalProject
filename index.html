@@ -92,6 +92,9 @@
 
                             <div id="bubbles"></div>
 
+                            <button type="button" class="btn" onclick="bubbleChart.sort()">Sort (WIP)</button>
+
+
                             <p>The blue bubbles represent registered Democrats, the red bubbles represent registered Republicans, and the green bubbles represent everyone else.</p>
 
                             <p ng-if="currentState[partySelection].type=='closed'">Your state is closed, so you can see that all the blue bubbles can only go to the Democratic voting areas, and are not allowed into the Republican voting areas. The reverse is true for the red bubbles. The green bubbles are not registered for either, and cannot vote in either party.</p>
@@ -106,13 +109,8 @@
 
                             <h4>I know where I can vote now, but what does voting actually do?</h4>
 
-                    
-<<<<<<< HEAD
-                    <!--<h4 id="pieTitle">The proportion of delegates each state has vs. the needed proportion of delegates to secure the nomination per party.</h4>-->
-=======
                             <h4 id="pieTitle">The proportion of delegates each state has vs. the needed proportion of delegates to secure the nomination per party.</h4>
 
->>>>>>> b31ec378213a3054cfb4ff44a448f5a0e94baee2
                             <p ng-if="currentState.republican.allocation=='unbound'">Your state's delegates are unbound: Although delegates are awarded depending on the results of your vote, delegates can still decide to vote according to their own views, regardless of the results of your state.</p>
 
                         </div>
@@ -148,13 +146,13 @@
                             <h4 id="pieTitle">How much of an impact do the delegates my state pick have on the candidate that will make it into the general election?</h4>
 
                             <p ng-model="currentState">Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
-                        
+
                             <div id="tooltip" class="hidden">
                                 <p><strong>Important Label Heading</strong>
                                 </p>
                                 <p><span id="value">100</span>%</p>
                             </div>
-                                            
+
                             <div id="wrapper">
                                 <div id="firstSet"><p id="titleRep">Republican:</p>
                                     <div id="pie1"></div>
