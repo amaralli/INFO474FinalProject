@@ -18,3 +18,46 @@
 p {
 	font-size: 15pt;
 }
+
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#wrapper{
+    width: 100%;
+    overflow: hidden; /* contain floated elements */
+    
+}
+
+#pie2 {
+    float: left; 
+    width: 25%;
+    
+}
+
+#pie1 { 
+    float: left;  
+    width: 25%;
+}
+
+#pie4{
+    float: left;
+    width: 25%;    
+}
+
+#pie3{
+    float: left;
+    width: 25%;    
+}
+

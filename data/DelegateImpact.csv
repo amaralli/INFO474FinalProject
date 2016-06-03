@@ -1,0 +1,57 @@
+State,Abbreviation,RepImpact,DemImpact,NeedDem,NeedRep,PercentRep,PercentDem
+Alabama,AL,50,58,4483,2470,50.08,46.84
+Alaska,AK,28,18,2383,1237,49.92,53.16
+Amer. Samoa,AS,9,10
+Arizona,AZ,58,75
+Arkansas,AR,40,37
+California,CA,172,476
+Colorado,CO,37,77
+Connecticut,CT,28,65
+Delaware,DE,16,27
+DC,DC,19,37
+Florida,FL,99,238
+Georgia,GA,76,112
+Guam,GU,9,11
+Hawaii,HI,19,31
+Idaho,ID,32,24
+Illinois,IL,69,190
+Indiana,IN,57,79
+Iowa,IA,30,54
+Kansas,KS,40,37
+Kentucky,KY,45,53
+Louisiana,LA,46,61
+Maine,ME,23,31
+Maryland,MD,38,105
+Massachusetts,MA,42,121
+Michigan,MI,59,152
+Minnesota,MN,38,94
+Mississippi,MS,39,41
+Missouri,MO,52,88
+Montana,MT,27,22
+Nebraska,NE,36,3
+Nevada,NV,30,39
+New Hampshire,NH,23,32
+New Jersey,NJ,51,26
+New Mexico,NM,24,38
+New York,NY,95,277
+North Carolina,NC,72,120
+North Dakota,ND,28,19
+N. Marianas,MP,9,11
+Ohio,OH,66,165
+Oklahoma,OK,43,42
+Oregon,OR,28,64
+Pennsylvania,PA,71,181
+Puerto Rico,PR,23,58
+Rhode Island,RI,19,31
+South Carolina,SC,50,57
+South Dakota,SD,29,20
+Tennessee,TN,58,77
+Texas,TX,155,237
+Utah,UT,40,28
+Vermont,VT,16,23
+Virgin Islands,VI,9,11
+Virginia,VA,49,112
+Washington,WA,44,102
+West Virginia,WV,34,35
+Wisconsin,WI,42,89
+Wyoming,WY,29,17
