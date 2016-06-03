@@ -81,8 +81,8 @@
 
 $(function() {
     
-    var width = 228,
-        height = 228,
+    var width = 350,
+        height = 350,
         radius = Math.min(width, height) / 2;
 
     var color = d3.scale.ordinal()
@@ -164,8 +164,8 @@ $(function() {
 
 $(function() {
     
-    var width = 228,
-        height = 228,
+    var width = 350,
+        height = 350,
         radius = Math.min(width, height) / 2;
 
     var color = d3.scale.ordinal()
@@ -240,8 +240,8 @@ $(function() {
 
 $(function() {
     
-    var width = 228,
-        height = 228,
+    var width = 350,
+        height = 350,
         radius = Math.min(width, height) / 2;
 
     var color = d3.scale.ordinal()
@@ -314,8 +314,8 @@ $(function() {
 
 $(function() {
     
-    var width = 228,
-        height = 226,
+    var width = 350,
+        height = 350,
         radius = Math.min(width, height) / 2;
 
     var color = d3.scale.ordinal()
