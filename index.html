@@ -106,10 +106,11 @@
 
                             <h4>I know where I can vote now, but what does voting actually do?</h4>
 
-                    
-                            <h4 id="pieTitle">The proportion of delegates each state has vs. the needed proportion of delegates to secure the nomination per party.</h4>
+                            <p>Funny enough, your vote doesn't vote to elect a candidate, your vote counts towards electing a person to elect a candidate for you. This person is called a delegate, and their job is to represent your vote in the elections outside of your district.</p>
 
-                            <p ng-if="currentState.republican.allocation=='unbound'">Your state's delegates are unbound: Although delegates are awarded depending on the results of your vote, delegates can still decide to vote according to their own views, regardless of the results of your state.</p>
+                            <p ng-if="currentState.republican.allocation=='unbound'">However, in {{currentState.name}}, there is a small caveat. Your state's delegates are unbound, which means that although delegates are awarded depending on the results of your vote, delegates can still decide to vote according to their own views, regardless of the results of your state. Although this rarely happens, it is still something to be aware of.</p>
+
+                            <p>Many states have different ways of calculating how your vote transfers over towards a delegate, but first we have to talk about how your vote is collected in the first place</p>
 
                         </div>
 
@@ -120,22 +121,26 @@
 
                             <img src="img/caucus.jpg" ng-if="currentState[partySelection].method == 'caucus'">
 
-                            <p ng-if="currentState[partySelection].method == 'caucus'">A caucus is...</p>
+                            <p ng-if="currentState[partySelection].method == 'caucus'">A caucus is a system of local gatherings where voters decide which candidate to support and select delegates for nominating conventions. Caucuses are unique in that they allow participants to openly show support for candidates. Voting is often done by raising hands or breaking into groups according to the candidate participants support. The results of the caucus are used to determine the delegates present at county, state and national nominating conventions of each political party. Most often, only registered voters can participate in a caucus, and they are limited to the caucus of the party with which they are affiliated. </p>
 
                             <img src="img/primary.jpg" ng-if="currentState[partySelection].method == 'primary'">
 
-                            <p ng-if="currentState[partySelection].method == 'primary'">A primary is...</p>
+                            <p ng-if="currentState[partySelection].method == 'primary'">A primary is a statewide voting process in which voters cast secret ballots for their preferred candidates. Similar to the general election process, primary voters cast secret ballots for the candidates of their choosing. For those who have ever voted before, from a general election to a school class president, this will feel very familiar. </p>
 
                         </div>
 
                         <div id="distributionTypeSection" class="section">
                             <h4>Once my vote's been cast, how do the delegates get chosen?</h4>
 
-                            <p ng-if="currentState.republican.allocation=='p'">Your state is proportional: Delegates are allotted proportionally to the outcome of the primary or caucus.</p>
+                            <p>Now that we know how your vote is cast, and that your vote actually goes towards delegate representation, we now know that your vote will go to a delegate that matches your views, right? Well, not always.</p>
 
-                            <p ng-if="currenState.republican.allocation == 'wtm'">Your state is Winner Take Most (WTM): Some delegates are reserved for the winner of the primary/caucus, and others are divided proportionally to the outcome of vote.</p>
+                            <p ng-if="currentState[partySelection].method == 'caucus'">Thankfully, your state and party vote in caucuses, so it really is that easy! Your vote is proportional, which means that if your vote represents 60% of the people in your voting district, 60% of the delegates are going to vote for the person you wanted to see in office. </p>
 
-                            <p ng-if="currenState.republican.allocation == 'wta'">Your state is Winner Take All (WTM): All delegates are awarded to the winner of a primary.</p>
+                            <p ng-if="currentState.republican.allocation=='p'">Thankfully, {{currentState.name}} is proportional, so it really is that easy. If your vote represents 60% of the people in your voting district, 60% of the delegates are going to vote for the person you wanted to see in office.</p>
+
+                            <p ng-if="currenState.republican.allocation == 'wtm'">Now, {{currentState.name}} is a bit different. Your state is Winner Take Most, which means that some delegates are reserved for the winner of the primary/caucus, and others are divided proportionally to the outcome of vote. So, if you voted in the majority of your state, your vote is more represented than people with other views. However, if you are in the minority, your vote will be represented less than those with the majority view.</p>
+
+                            <p ng-if="currenState.republican.allocation == 'wta'">{{currentState.name}} is actually very different than this system. Your state is Winner Take All, which means that all delegates are awarded to the winner of a primary. If you are a part of the majority vote, your vote will be overrepresented by a large degree. If your vote is not part of the majority, your vote will actually not count towards electing a candidate. Bummer.</p>
 
                         </div>
 
@@ -143,7 +148,7 @@
 
                             <h4 id="pieTitle">How much of an impact do the delegates my state pick have on the candidate that will make it into the general election?</h4>
 
-                            <p ng-model="currentState">Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
+                            <p ng-model="currentState"> Every state has a certain number of delegates used, to represent the population of your state compared to population of the United States as a whole. If you live in a heavily populated state, you will have more delegates than a sparsely-populated state. Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
                         
                             <div id="tooltip" class="hidden">
                                 <p><strong>Important Label Heading</strong>
@@ -163,7 +168,7 @@
 
                         <div id="mapSection" class="section">
                             <!--button group to toggle between explore options-->
-                            <h4>How does my state compare to other states?s</h4>
+                            <h4>How does my state compare to other states?</h4>
                             <div class="btn-group" role="group" aria-label="...">
                                 <button type="button" class="btn btn-default">Open</button>
                                 <button type="button" class="btn btn-default">Semi-Open</button>
