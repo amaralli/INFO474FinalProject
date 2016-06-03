@@ -28,6 +28,10 @@ p {
   stroke: #fff;
 }
 
+.section {
+    margin-bottom: 20px;
+}
+
 form {
   position: absolute;
   right: 10px;
