@@ -77,31 +77,56 @@
 
                         <!--Button group to select party affiliation-->
 
-                        <div id="votingEligibilitySection">
+                        <div id="votingEligibilitySection" class="section">
 
-                            <p ng-if="currentState[partySelection].type=='closed'">Your state is closed: Voters need to be registered with the party the plan to vote for in the caucus/primaries.</p>
+                            <h4>Who is allowed to vote, and for what party?</h4>
+                            <p>Each state gets to choose who is allowed to participate in the non-general election. Some states require party registration, some allow anyone to vote. </p>
 
-                            <p ng-if="currentState[partySelection].type== 'open'">Your state is open: Voters do not need to be registered with the party they plan to vote for the primary/caucus, although they must chose only one party to caucus/primary for.</p>
+                            <p ng-if="currentState[partySelection].type=='closed'">{{currentState.name}} runs closed elections, so voters need to be registered with the party they plan to vote for in pre-general elections.</p>
 
-                            <p ng-if="currentState[partySelection].type=='mixed'">Your state is mixed:</p>
+                            <p ng-if="currentState[partySelection].type== 'open'">{{currentState.name}} runs open elections, so voters do not need to be registered with the party they plan to vote for in the pre-general elections, although they must choose only one party to vote.</p>
+
+                            <p ng-if="currentState[partySelection].type=='mixed'">{{currentState.name}} runs a mixed election, so voters in your state can vote in a variety of ways, depending on your state. Some will include everyone on one ballot, some will only allow registered members of a party to only vote for that party but still allow independents to vote as they choose, and more.</p>
+
+                            <h5>Let's see how people can decide to vote in {{currentState.name}}!</h5>
 
                             <div id="bubbles"></div>
 
+                            <p>The blue bubbles represent registered Democrats, the red bubbles represent registered Republicans, and the green bubbles represent everyone else.</p>
+
+                            <p ng-if="currentState[partySelection].type=='closed'">Your state is closed, so you can see that all the blue bubbles can only go to the Democratic voting areas, and are not allowed into the Republican voting areas. The reverse is true for the red bubbles. The green bubbles are not registered for either, and cannot vote in either party.</p>
+
+                            <p ng-if="currentState[partySelection].type== 'open'">Your state is open, so you can see that all of the bubbles of any color can go vote in any voting booth, or none at all.</p>
+
+                            <p ng-if="currentState[partySelection].type=='mixed'">Your state is too complicated for a version 0 product to supply.... </p>
+
                         </div>
 
-                        <div id="delegateExplanation">
+                        <div id="delegateExplanation" class="section">
+
+                            <h4>I know where I can vote now, but what does voting actually do?</h4>
 
                             <p ng-if="currentState.republican.allocation=='unbound'">Your state's delegates are unbound: Although delegates are awarded depending on the results of your vote, delegates can still decide to vote according to their own views, regardless of the results of your state.</p>
 
                         </div>
 
-                        <div id="electionTypeSection">
+                        <div id="electionTypeSection" class="section">
+                            <h4>How does {{currentState.name}} gather your votes to choose your state's delegates?</h4>
 
-                            <p ng-model="currentState">Your party in this state holds a {{currentState[partySelection].method}} type of election</p>
+                            <p ng-model="currentState">Your party in this state holds a {{currentState[partySelection].method}} to choose its delegates</p>
+
+                            <img src="img/caucus.jpg" ng-if="currentState[partySelection].method == 'caucus'">
+
+                            <p ng-if="currentState[partySelection].method == 'caucus'">A caucus is...</p>
+
+                            <img src="img/primary.jpg" ng-if="currentState[partySelection].method == 'primary'">
+
+                            <p ng-if="currentState[partySelection].method == 'primary'">A primary is...</p>
 
                         </div>
 
-                        <div id="distributionTypeSection">
+                        <div id="distributionTypeSection" class="section">
+                            <h4>Once my vote's been cast, how do the delegates get chosen?</h4>
 
                             <p ng-if="currentState.republican.allocation=='p'">Your state is proportional: Delegates are allotted proportionally to the outcome of the primary or caucus.</p>
 
@@ -111,10 +136,11 @@
 
                         </div>
 
-                        <div id="pieChartSection">
-                            <p ng-model="currentState">Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
+                        <div id="pieChartSection" class="section">
 
-                            <h4 id="pieTitle">The proportion of delegates each state has vs. the needed proportion of delegates to secure the nomination per party.</h4>
+                            <h4 id="pieTitle">How much of an impact do the delegates my state pick have on the candidate that will make it into the general election?</h4>
+
+                            <p ng-model="currentState">Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
                         
                             <div id="tooltip" class="hidden">
                                 <p><strong>Important Label Heading</strong>
@@ -129,24 +155,25 @@
                                 <p id="titleDem">Democrat</p>
                                 <div id="pie3"></div>
                                 <div id="pie4"></div>
-                                <div id="vis"></div>
                             </div>
                         </div>
 
-                        <div id="mapSection">
+                        <div id="mapSection" class="section">
+                            <!--button group to toggle between explore options-->
+                            <h4>How does my state compare to other states?s</h4>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default">Open</button>
+                                <button type="button" class="btn btn-default">Semi-Open</button>
+                                <button type="button" class="btn btn-default">Semi-Closed</button>
+                                <button type="button" class="btn btn-default">Closed</button>
+                            </div>
+                            <div id="vis"></div>
                         </div>
 
-                        <div id="conclusionSection">
+                        <div id="conclusionSection" class="section">
                         </div>
 
-                        <!--button group to toggle between explore options-->
-                        <h3>Explore:</h3>
-                        <div class="btn-group" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Open</button>
-                            <button type="button" class="btn btn-default">Semi-Open</button>
-                            <button type="button" class="btn btn-default">Semi-Closed</button>
-                            <button type="button" class="btn btn-default">Closed</button>
-                        </div>
+                        
                     
                     </div>
                 </div>
