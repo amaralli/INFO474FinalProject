@@ -41,7 +41,6 @@
 
             </div>
 
-            <div id="bubbles"></div>
 
             <div  ng-hide="firstStart">
                 <div class="state-question center-align">
@@ -60,63 +59,96 @@
                         <button type="button" class="btn" ng-click="selectParty('republican')">Republican</button>
                         <button type="button" class="btn" ng-click="selectParty('democratic')">Democratic</button>
                         <button type="button" class="btn" ng-click="selectParty('independent')">Independent</button>
-                        <button type="button" class="btn btn-default" ng-click="selectParty('none')">None</button>
+                        <!-- <button type="button" class="btn btn-default" ng-click="selectParty('none')">None</button> -->
                     </div>
                     </br>
                     </br>
 
                 </div>
 
-                <div ng-hide="currentState == '' || partySelection == ''">
+                <div id="unableToVoteCase" ng-if="noVote">
+                    <p>Unfortunately, you are actually ineligable to vote in your state for the party elections. Either register with a party, or move. =(</p>
+                </div>
+
+                <div id="continueExplanation" ng-hide="noVote">
+
+                    <div id="overallExplanation" ng-hide="currentState == '' || partySelection == ''">
 
 
-                    <!--Button group to select party affiliation-->
+                        <!--Button group to select party affiliation-->
 
+                        <div id="votingEligibilitySection">
 
-                    <p ng-if="currentState[partySelection].type== 'open'">Your state is open: Voters do not need to be registered with the party they plan to vote for the primary/caucus, although they must chose only one party to caucus/primary for.</p>
+                            <p ng-if="currentState[partySelection].type=='closed'">Your state is closed: Voters need to be registered with the party the plan to vote for in the caucus/primaries.</p>
 
-                    <p ng-if="currentState[partySelection].type=='mixed'">Your state is mixed:</p>
+                            <p ng-if="currentState[partySelection].type== 'open'">Your state is open: Voters do not need to be registered with the party they plan to vote for the primary/caucus, although they must chose only one party to caucus/primary for.</p>
 
-                    <p ng-model="currentState">Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
+                            <p ng-if="currentState[partySelection].type=='mixed'">Your state is mixed:</p>
 
-                    <p ng-if="currentState[partySelection].type=='closed'">Your state is closed: Voters need to be registered with the party the plan to vote for in the caucus/primaries.</p>
+                            <div id="bubbles"></div>
 
-                    <p ng-if="currentState.republican.allocation=='unbound'">Your state is Winner Take All (WTA): All delegates are allotted to the winner of the primary/caucus.</p>
+                        </div>
 
-                    <!--(should we say per state how the amount reserved for winner?)-->
-                    <!-- <p>Your state is Winner Take Most (WTM): Some delegates are reserved for the winner of the primary/caucus, and others are divided proportionally to the outcome of vote.</p> -->
+                        <div id="delegateExplanation">
 
-                    <p ng-if="currentState.republican.allocation=='p'">Your state is proportional: Delegates are allotted proportionally to the outcome of the primary or caucus.</p>
+                            <p ng-if="currentState.republican.allocation=='unbound'">Your state's delegates are unbound: Although delegates are awarded depending on the results of your vote, delegates can still decide to vote according to their own views, regardless of the results of your state.</p>
 
-                    <p ng-model="currentState">Your party in this state holds a {{currentState[partySelection].method}} type of election</p>
+                        </div>
 
-                    <!--button group to toggle between explore options-->
-                    <h3>Explore:</h3>
-                    <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default">Open</button>
-                        <button type="button" class="btn btn-default">Semi-Open</button>
-                        <button type="button" class="btn btn-default">Semi-Closed</button>
-                        <button type="button" class="btn btn-default">Closed</button>
-                    </div>
+                        <div id="electionTypeSection">
+
+                            <p ng-model="currentState">Your party in this state holds a {{currentState[partySelection].method}} type of election</p>
+
+                        </div>
+
+                        <div id="distributionTypeSection">
+
+                            <p ng-if="currentState.republican.allocation=='p'">Your state is proportional: Delegates are allotted proportionally to the outcome of the primary or caucus.</p>
+
+                            <p ng-if="currenState.republican.allocation == 'wtm'">Your state is Winner Take Most (WTM): Some delegates are reserved for the winner of the primary/caucus, and others are divided proportionally to the outcome of vote.</p>
+
+                            <p ng-if="currenState.republican.allocation == 'wta'">Your state is Winner Take All (WTM): All delegates are awarded to the winner of a primary.</p>
+
+                        </div>
+
+                        <div id="pieChartSection">
+                            <p ng-model="currentState">Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
+
+                            <h4 id="pieTitle">The proportion of delegates each state has vs. the needed proportion of delegates to secure the nomination per party.</h4>
+                        
+                            <div id="tooltip" class="hidden">
+                                <p><strong>Important Label Heading</strong>
+                                </p>
+                                <p><span id="value">100</span>%</p>
+                            </div>
+                                            
+                            <div id="wrapper">
+                                <p id="titleRep">Republican</p>
+                                <div id="pie1"></div>
+                                <div id="pie2"></div>
+                                <p id="titleDem">Democrat</p>
+                                <div id="pie3"></div>
+                                <div id="pie4"></div>
+                                <div id="vis"></div>
+                            </div>
+                        </div>
+
+                        <div id="mapSection">
+                        </div>
+
+                        <div id="conclusionSection">
+                        </div>
+
+                        <!--button group to toggle between explore options-->
+                        <h3>Explore:</h3>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default">Open</button>
+                            <button type="button" class="btn btn-default">Semi-Open</button>
+                            <button type="button" class="btn btn-default">Semi-Closed</button>
+                            <button type="button" class="btn btn-default">Closed</button>
+                        </div>
                     
-                    <h4 id="pieTitle">The proportion of delegates each state has vs. the needed proportion of delegates to secure the nomination per party.</h4>
-                    
-                    <div id="tooltip" class="hidden">
-                        <p><strong>Important Label Heading</strong>
-                        </p>
-                        <p><span id="value">100</span>%</p>
                     </div>
-                                    
-                    <div id="wrapper">
-                        <p id="titleRep">Republican</p>
-                        <div id="pie1"></div>
-                        <div id="pie2"></div>
-                        <p id="titleDem">Democrat</p>
-                        <div id="pie3"></div>
-                        <div id="pie4"></div>
-                        <div id="vis"></div>
-                    </div>
-                    
                 </div>
 
             </div>

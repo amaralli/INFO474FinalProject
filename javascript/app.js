@@ -12,6 +12,7 @@ angular.module('explanation', [])
         $scope.firstStart = true;
         //party selection
         $scope.partySelection = "";
+        $scope.noVote = false;
 
     	//populates the drop down
     	$http.get('stateData.json')
@@ -26,7 +27,7 @@ angular.module('explanation', [])
     	//changes the state the user has selected every time they select something from the drop down.
     	$scope.selectState = function(selectedState) {
     		$scope.currentState = JSON.parse(selectedState);
-            console.log($scope.currentState)
+            evalClosedOff();
     	}
 
         //starts the experience
@@ -45,8 +46,16 @@ angular.module('explanation', [])
 		}
 
         $scope.selectParty = function(partyName) {
-            console.log("OOOOOOO " + partyName)
             $scope.partySelection = partyName;
+            evalClosedOff();
+        }
+
+        var evalClosedOff = function() {
+            if($scope.partySelection == 'independent' && $scope.currentState.republican.type == 'closed') {
+                $scope.noVote = true;
+            } else {
+                $scope.noVote = false;
+            }
         }
 
 		console.log($scope.currentState);
