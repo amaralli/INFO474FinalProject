@@ -17,7 +17,8 @@ angular.module('explanation', [])
     	//populates the drop down
     	$http.get('stateData.json')
     		.success(function(data) {
-    			$scope.states = data.states;
+                var sortedStates = data.states.sort(function(a, b) { return a.name.localeCompare(b.name) })
+    			$scope.states = sortedStates;
 				console.log($scope.states);
     		})
     		.error(function() {
