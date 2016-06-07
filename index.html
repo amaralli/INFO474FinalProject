@@ -153,11 +153,12 @@
 
 
                             <p ng-model="currentState"> Every state has a certain number of delegates used, to represent the population of your state compared to population of the United States as a whole. If you live in a heavily populated state, you will have more delegates than a sparsely-populated state. Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
-                        
+
                             <div id="tooltip" class="hidden">
                                 <p><strong>Important Label Heading</strong>
                                 </p>
                                 <p><span id="value">100</span>%</p>
+                                <p><span id="stateLabel">State label</span></p>
                             </div>
 
                             <div id="wrapper">
@@ -172,6 +173,12 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- <div id="tooltip2" class="hidden">
+                            <p><strong>Important Label Heading</strong>
+                            </p>
+                            <p><span id="value">100</span>%</p>
+                        </div> -->
 
                         <div id="mapSection" class="section">
                             <!--button group to toggle between explore options-->

@@ -1,8 +1,8 @@
 // var PieChart = function() {
-    
+
 //     function pie(selection) {
 //         selection.each(function(data) {
-            
+
 //             var width = 228,
 //                 height = 228,
 //                 radius = Math.min(width, height) / 2;
@@ -13,7 +13,7 @@
 //             var arc = d3.svg.arc()
 //                 .outerRadius(radius - 10)
 //                 .innerRadius(0);
-                
+
 //             var arcOver = d3.svg.arc()
 //                 .innerRadius(0)
 //                 .outerRadius(radius + 2);
@@ -54,7 +54,7 @@
 //                 .select("#value")
 //                 .text(d.Abbreviation);
 //             })
-            
+
 //             .on("mouseout", function(d) {
 //                 d3.select(this).transition()
 //                 .duration(1000)
@@ -62,25 +62,25 @@
 //                 d3.select("#tooltip")
 //                 .style("opacity", 0);;
 //             });
-                
+
 //             g.append("title")
-//                 .text(function(d) { return d.data.State; });   
-                
+//                 .text(function(d) { return d.data.State; });
+
 //             g.append("text")
 //                 .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
 //                 .attr("dy", ".35em")
 //                 .style("fill", "black")
 //                 .text(function(d) { return d.data.Abbreviation; });
-                
+
 //                 console.log(data);
 //             });
-                    
+
 //         })
 //     }
 
 
 $(function() {
-    
+
     var width = 350,
         height = 350,
         radius = Math.min(width, height) / 2;
@@ -91,7 +91,7 @@ $(function() {
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
-        
+
    var arcOver = d3.svg.arc()
       .innerRadius(0)
       .outerRadius(radius + 2);
@@ -123,7 +123,7 @@ $(function() {
         .attr("d", arc)
         .on("mouseover", function(d) {
         d3.select(this).transition()
-          .duration(1000)
+          .duration(200)
           .attr("d", arcOver);
         d3.select("#tooltip")
          .style("left", d3.event.pageX + "px")
@@ -132,38 +132,38 @@ $(function() {
          .select("#value")
          .text(d.Abbreviation);
       })
-      
+
       .on("mouseout", function(d) {
         d3.select(this).transition()
-          .duration(1000)
+          .duration(200)
           .attr("d", arc);
           d3.select("#tooltip")
           .style("opacity", 0);;
       });
-        
+
     g.append("title")
-        .text(function(d) { return d.data.State; });   
-         
+        .text(function(d) { return d.data.State; });
+
     g.append("text")
         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
         .attr("dy", ".35em")
         .style("fill", "black")
         .text(function(d) { return d.data.Abbreviation; });
-        
+
         console.log(data);
     });
-    
-    
+
+
 
     function type(d) {
     d.RepImpact = +d.RepImpact;
     return d;
     }
-    
+
 });
 
 $(function() {
-    
+
     var width = 350,
         height = 350,
         radius = Math.min(width, height) / 2;
@@ -174,7 +174,7 @@ $(function() {
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
-        
+
    var arcOver = d3.svg.arc()
       .innerRadius(0)
       .outerRadius(radius + 2);
@@ -206,40 +206,38 @@ $(function() {
         .attr("d", arc)
         .on("mouseover", function(d) {
         d3.select(this).transition()
-          .duration(1000)
+          .duration(200)
           .attr("d", arcOver);
       })
       .on("mouseout", function(d) {
         d3.select(this).transition()
-          .duration(1000)
+          .duration(200)
           .attr("d", arc);
       });
-        
+
     g.append("svg:title")
-        .text(function(d) { return d.data.NeedRep; });   
-         
+        .text(function(d) { return d.data.NeedRep; });
+
     g.append("text")
         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
         .attr("dy", ".35em")
         .style("fill", "black")
         // .text(function(d) { return d.data.PercentRep + "%"; });
         .text(function(d) { return d.data.PercentRep; });
-        
-        console.log(data);
     });
-    
-    
+
+
 
     function type(d) {
     d.RepImpact = +d.RepImpact;
     return d;
     }
-    
+
 });
 
 
 $(function() {
-    
+
     var width = 350,
         height = 350,
         radius = Math.min(width, height) / 2;
@@ -250,7 +248,7 @@ $(function() {
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
-    
+
     var arcOver = d3.svg.arc()
       .innerRadius(0)
       .outerRadius(radius + 2);
@@ -282,38 +280,34 @@ $(function() {
         .attr("d", arc)
         .on("mouseover", function(d) {
         d3.select(this).transition()
-          .duration(1000)
+          .duration(200)
           .attr("d", arcOver);
       })
       .on("mouseout", function(d) {
         d3.select(this).transition()
-          .duration(1000)
+          .duration(200)
           .attr("d", arc);
       });
-        
+
     g.append("title")
-        .text(function(d) { return d.data.State; });   
-         
+        .text(function(d) { return d.data.State; });
+
     g.append("text")
         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
         .attr("dy", ".35em")
         .style("fill", "black")
         .text(function(d) { return d.data.Abbreviation; });
-        
-        console.log(data);
     });
-    
-    
 
     function type(d) {
     d.RepImpact = +d.RepImpact;
     return d;
     }
-    
+
 });
 
 $(function() {
-    
+
     var width = 350,
         height = 350,
         radius = Math.min(width, height) / 2;
@@ -324,7 +318,7 @@ $(function() {
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
-   
+
    var arcOver = d3.svg.arc()
       .innerRadius(0)
       .outerRadius(radius + 2);
@@ -356,35 +350,33 @@ $(function() {
         .attr("d", arc)
         .on("mouseover", function(d) {
         d3.select(this).transition()
-          .duration(1000)
+          .duration(200)
           .attr("d", arcOver);
       })
       .on("mouseout", function(d) {
         d3.select(this).transition()
-          .duration(1000)
+          .duration(200)
           .attr("d", arc);
       });
-        
+
     g.append("title")
-        .text(function(d) { return d.data.PercentDem; });   
-         
+        .text(function(d) { return d.data.PercentDem; });
+
     g.append("text")
         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
         .attr("dy", ".35em")
         .style("fill", "black")
         // .text(function(d) { return d.data.PercentRep + "%"; });
         .text(function(d) { return d.data.PercentDem; });
-        
-        console.log(data);
     });
-    
-    
+
+
 
     function type(d) {
         d.RepImpact = +d.RepImpact;
         return d;
     }
-    
+
 });
 
 
@@ -415,10 +407,10 @@ $(function() {
 // //         .enter().append("g")
 // //         .attr("class", "arc")
 // //         .style("fill", function(d, i) {return color(i)});
-        
+
 //         var path = svg.selectAll(".arc")
 //         .data(pie(data))
-        
+
 //         .enter().append("path")
 //         .attr("class", "arc")
 //         .style("fill", function(d, i) {return color(i)});
@@ -448,4 +440,3 @@ $(function() {
 //         return d;
 //     }
 // });
-

@@ -32,6 +32,10 @@ p {
     margin-bottom: 10px;
 }
 
+path:hover path.state {
+	fill : "#030303";
+}
+
 img {
     margin-bottom: 8px;
     margin-top: 8px;
@@ -46,11 +50,11 @@ form {
 #wrapper{
     width: 100%;
     overflow: hidden; /* contain floated elements */
-    
+
 }
 
 /*#titleRep {
-	float:left;	
+	float:left;
 	width:10%;
 }
 
@@ -70,24 +74,24 @@ form {
 }
 
 #pie2 {
-    float: left; 
+    float: left;
     width: 50%;
-    
+
 }
 
-#pie1 { 
-    float: left;  
+#pie1 {
+    float: left;
     width: 50%;
 }
 
 #pie4{
     float: left;
-    width: 50%;    
+    width: 50%;
 }
 
 #pie3{
     float: left;
-    width: 50%;    
+    width: 50%;
 }
 
 #tooltip {
@@ -113,4 +117,3 @@ form {
     font-size: 16px;
     line-height: 20px;
 }
-

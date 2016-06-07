@@ -22,5 +22,4 @@ $(function() {
     bubbleChart.setData(data);
     bubbleChart.setDimensions(1000, 500);
     bubbleChart.build();
-    console.log(bubbleChart);
 });

@@ -11,18 +11,9 @@ $(function() {
         .attr("width", width)
         .attr("height", height);
 
-    // var tip = d3.tip()
-    //     .attr('class', 'd3-tip')
-    //     .offset([-10, 0])
-    //     .html(function(d) {
-    //         return "<span>" + d.state + "</span>";
-    //     })
-
-    //svg.call(tip);
 
     d3.json('gz_2010_us_040_00_20m.json', function(error, shape) {
         data = shape;
-        console.log(data);
         var projection = d3.geo.albersUsa().scale(1).translate([0,0]).precision(0);
         var path = d3.geo.path().projection(projection);
         var bounds = path.bounds(shape)
@@ -37,13 +28,43 @@ $(function() {
 
         var paths = svg.selectAll("path")
             .data(shape.features).enter().append("path")
+            .attr("class", "state")
             .attr("d", path)
-            .style("fill", "none")
-            .style("stroke", "black")
-            //.on('mouseover', tip.show)
-            //.on('mouseout', tip.hide)
+            .style("fill", "#C9C9C9")
+            .style("stroke", "white")
+            .on("mouseover", function(d) {   //Add tooltip on mouseover for each circle
 
+                d3.select(this)
+                    .transition()
+                    .duration(100)
+                    .style("fill", "#696969")
+                 //Get this county's x/y values, then augment for the tooltip
+                var xPosition = d3.select(this).attr("x");
+                var yPosition = d3.select(this).attr("y");
 
+                //  //Update the tooltip position and value
+                 d3.select("#tooltip")
+                     //Show the tooltip above where the mouse triggers the event
+                     .style("left", (d3.event.pageX) + "px")
+                     .style("top", (d3.event.pageY - 70) + "px")
+                     .select("#stateLabel")
+                     //CSV data has been bound to JSON at this point - so values must be referenced from JSON properties
+                     .html(d.properties.name)
+
+                 //Show the tooltip
+                 d3.select("#tooltip").classed("hidden", false);
+
+            })
+            .on("mouseout", function() {
+                d3.select(this)
+                    .transition()
+                    .duration(100)
+                    .style("fill", "#C9C9C9")
+
+                 //Hide the tooltip
+                 d3.select("#tooltip").classed("hidden", true);
+
+            })
     });
 
 })

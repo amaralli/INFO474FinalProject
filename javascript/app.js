@@ -19,7 +19,6 @@ angular.module('explanation', [])
     		.success(function(data) {
                 var sortedStates = data.states.sort(function(a, b) { return a.name.localeCompare(b.name) })
     			$scope.states = sortedStates;
-				console.log($scope.states);
     		})
     		.error(function() {
     			console.log("Failed to load JSON")
