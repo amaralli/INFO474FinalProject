@@ -1,82 +1,88 @@
-// var PieChart = function() {
+var PieChart = function() {
+    
+    var partyPercent;
+    var percent;
+    var needed;
+    var text;
+    var hoverText;
+    var width = 228,
+    height = 228,
+    radius = Math.min(width, height) / 2;
 
-//     function pie(selection) {
-//         selection.each(function(data) {
+    var color = d3.scale.category10();
 
-//             var width = 228,
-//                 height = 228,
-//                 radius = Math.min(width, height) / 2;
+    var arc = d3.svg.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(0);
 
-//             var color = d3.scale.ordinal()
-//                 .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+    var arcOver = d3.svg.arc()
+    .innerRadius(0)
+    .outerRadius(radius + 2);
 
-//             var arc = d3.svg.arc()
-//                 .outerRadius(radius - 10)
-//                 .innerRadius(0);
+    var labelArc = d3.svg.arc()
+    .outerRadius(radius - 40)
+    .innerRadius(radius - 40);
 
-//             var arcOver = d3.svg.arc()
-//                 .innerRadius(0)
-//                 .outerRadius(radius + 2);
+    function pie(selection) {
+        selection.each(function(data) {
 
-//             var labelArc = d3.svg.arc()
-//                 .outerRadius(radius - 40)
-//                 .innerRadius(radius - 40);
+            
 
-//             var pie = d3.layout.pie()
-//                 .sort(null)
-//                 .value(function(d) { return d.RepImpact; });
+            var pie = d3.layout.pie()
+                .sort(null)
+                .value(function(d) { return d[partyPercent] });
 
-//             var svg = d3.select("#pie1").append("svg")
-//                 .attr("width", width)
-//                 .attr("height", height)
-//                 .append("g")
-//                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+            var svg = d3.select(this).append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-//             d3.csv("./data/DelegateImpact.csv", type, function(error, data) {
-//             if (error) throw error;
+            var g = svg.selectAll(".arc")
+                .data(pie(data))
+                .enter().append("g")
+                .attr("class", "arc")
+                .style("fill", function(d) {return color(d[partyPercent])});
 
-//             var g = svg.selectAll(".arc")
-//                 .data(pie(data))
-//                 .enter().append("g")
-//                 .attr("class", "arc")
-//                 .style("fill", function(d) {return color(d.data.RepImpact);});
+            g.append("path")
+                .attr("d", arc)
+                .on("mouseover", function(d) {
+                d3.select(this).transition()
+                .duration(1000)
+                .attr("d", arcOver);
+                d3.select("#tooltip")
+                .style("left", d3.event.pageX + "px")
+                .style("top", d3.event.pageY + "px")
+                .style("opacity", 1)
+                .select("#value")
+                .text(d[text]);
+            })
 
-//             g.append("path")
-//                 .attr("d", arc)
-//                 .on("mouseover", function(d) {
-//                 d3.select(this).transition()
-//                 .duration(1000)
-//                 .attr("d", arcOver);
-//                 d3.select("#tooltip")
-//                 .style("left", d3.event.pageX + "px")
-//                 .style("top", d3.event.pageY + "px")
-//                 .style("opacity", 1)
-//                 .select("#value")
-//                 .text(d.Abbreviation);
-//             })
+            .on("mouseout", function(d) {
+                d3.select(this).transition()
+                .duration(1000)
+                .attr("d", arc);
+                d3.select("#tooltip")
+                .style("opacity", 0);;
+            });
 
-//             .on("mouseout", function(d) {
-//                 d3.select(this).transition()
-//                 .duration(1000)
-//                 .attr("d", arc);
-//                 d3.select("#tooltip")
-//                 .style("opacity", 0);;
-//             });
+            g.append("title")
+                .text(function(d) { return d[hoverText]; });
 
-//             g.append("title")
-//                 .text(function(d) { return d.data.State; });
+            g.append("text")
+                .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+                .attr("dy", ".35em")
+                .style("fill", "black")
+                .text(function(d) { return d[text]; });
 
-//             g.append("text")
-//                 .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-//                 .attr("dy", ".35em")
-//                 .style("fill", "black")
-//                 .text(function(d) { return d.data.Abbreviation; });
+                console.log(data);
+            });
 
-//                 console.log(data);
-//             });
-
-//         })
-//     }
+        }
+        
+        return pie;
+    }
+   
 
 
 $(function() {
@@ -85,8 +91,8 @@ $(function() {
         height = 350,
         radius = Math.min(width, height) / 2;
 
-    var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+    var color = d3.scale.category10()
+        // .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
