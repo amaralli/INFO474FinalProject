@@ -2,8 +2,8 @@ var bubbleChart;
 
 $(function() {
     bubbleChart = Bubbles();
-    var data = [];
-    var total = 120;
+    var voterData = [];
+    var total = 9;
     for (var i = 0; i < total; i++) {
         var temp = {};
         var alignment;
@@ -15,11 +15,19 @@ $(function() {
             alignment = 'independent';
         }
         temp.type = alignment;
-        data.push(temp);
+        voterData.push(temp);
+    }
+
+    var candidateData = [];
+    for (var i = 1; i <= 2; i++) {
+        var temp = {};
+        temp.number = i;
+        candidateData.push(temp);
     }
 
     bubbleChart.setSelector('#bubbles');
-    bubbleChart.setData(data);
     bubbleChart.setDimensions(1000, 500);
+    bubbleChart.setVoterData(voterData);
+    bubbleChart.setCandidateData(candidateData);
     bubbleChart.build();
 });
