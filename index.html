@@ -92,6 +92,13 @@
 
                             <div id="bubbles"></div>
 
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn" onclick="bubbleChart.stage0()">Stage 0</button>
+                                <button type="button" class="btn" onclick="bubbleChart.stage1()">Stage 1</button>
+                                <button type="button" class="btn" onclick="bubbleChart.stage2()">Stage 2</button>
+                                <!-- <button type="button" class="btn btn-default" ng-click="selectParty('none')">None</button> -->
+                            </div>
+
                             <p>The blue bubbles represent registered Democrats, the red bubbles represent registered Republicans, and the green bubbles represent everyone else.</p>
 
                             <p ng-if="currentState[partySelection].type=='closed'">Your state is closed, so you can see that all the blue bubbles can only go to the Democratic voting areas, and are not allowed into the Republican voting areas. The reverse is true for the red bubbles. The green bubbles are not registered for either, and cannot vote in either party.</p>
