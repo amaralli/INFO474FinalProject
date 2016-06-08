@@ -70,7 +70,7 @@ window.Bubbles = (function() {
             this.delegates.enter().append('circle')
                 .attr('r', this.bubbleRadius * 2)
                 .attr('class', 'delegates')
-                .style('fill', 'black')
+                .style('fill', '#C9C9C9')
 
             this.stage0();
 
