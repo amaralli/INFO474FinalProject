@@ -25,9 +25,17 @@ $(function() {
         candidateData.push(temp);
     }
 
+    var delegateData = [];
+    for (var i = 1; i <= 4; i++) {
+        var temp = {};
+        temp.number = i;
+        delegateData.push(temp);
+    }
+
     bubbleChart.setSelector('#bubbles');
     bubbleChart.setDimensions(1000, 500);
     bubbleChart.setVoterData(voterData);
     bubbleChart.setCandidateData(candidateData);
+    bubbleChart.setDelegateData(delegateData);
     bubbleChart.build();
 });

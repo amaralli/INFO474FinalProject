@@ -11,6 +11,7 @@ window.Bubbles = (function() {
 
         bubbles.voterData;
         bubbles.candidateData;
+        bubbles.delegateData;
 
         bubbles.canvasSelector;
 
@@ -28,9 +29,11 @@ window.Bubbles = (function() {
         bubbles.horizontalDistance = 100;
         bubbles.voterStartingPoint;
         bubbles.candidateStartingPoint;
+        bubbles.delegateStartingPoint;
 
         bubbles.voters;
         bubbles.candidates;
+        bubbles.delegates;
 
         bubbles.build = function() {
             if (this.canvasSelector == undefined || this.canvasWidth == undefined || this.canvasHeight == undefined || this.voterData == undefined) {
@@ -53,43 +56,89 @@ window.Bubbles = (function() {
             this.voters.enter().append('circle')
                 .attr('r', this.bubbleRadius)
                 .attr('class', "voters")
-                .style('fill', 'white')
-                .attr('cx', function(d, i) { return bubbles.widthMid })
-                .attr('cy', function(d, i) { return bubbles.voterStartingPoint + i * bubbles.bubbleDistance })
+                .style('fill', function(d) { return bubbles.determineColor(d) })
 
             this.candidates = chartG.selectAll('#candidates').data(this.candidateData);
 
             this.candidates.enter().append('circle')
-                .attr('r', this.bubbleRadius * 1.5)
+                .attr('r', this.bubbleRadius * 3)
                 .attr('class', "candidates")
-                .style('fill', 'white')
+                .style('fill', 'black')
+
+            this.delegates = chartG.selectAll('#delegates').data(this.delegateData);
+
+            this.delegates.enter().append('circle')
+                .attr('r', this.bubbleRadius * 2)
+                .attr('class', 'delegates')
+                .style('fill', 'black')
+
+            this.stage0();
+
+            return this;
+        }
+
+        bubbles.stage0 = function() {
+            this.voters.transition()
+                .duration(1000)
+                .delay(function(d, i) { return i * 50 })
+                .style('fill-opacity', '0.0')
+                .attr('cx', function(d, i) { return bubbles.widthMid })
+                .attr('cy', function(d, i) { return bubbles.voterStartingPoint + i * bubbles.bubbleDistance })
+
+            this.candidates.transition()
+                .duration(1000)
+                .style('fill-opacity', '0.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid })
                 .attr('cy', function(d, i) { return bubbles.candidateStartingPoint + i * bubbles.bubbleDistance * 2})
 
-            return this;
+            this.delegates.transition()
+                .duration(1000)
+                .style('fill-opacity', '0.0')
+                .attr('cx', function(d, i) { return bubbles.widthMid })
+                .attr('cy', function(d, i) { return (bubbles.delegateStartingPoint + i * bubbles.bubbleDistance * 2 + 50)})
         }
 
         bubbles.stage1 = function() {
             this.voters.transition()
                 .duration(1000)
                 .delay(function(d, i) { return i * 50 })
-                .style('fill', function(d) { return bubbles.determineColor(d) })
+                .style('fill-opacity', '1.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid - bubbles.horizontalDistance })
-                .attr('cy', function(d, i) { return bubbles.voterStartingPoint + i * bubbles.bubbleDistance })
 
             this.candidates.transition()
                 .duration(1000)
                 .delay(function(d, i) { return i * 50 })
-                .style('fill', 'black')
+                .style('fill-opacity', '1.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid + bubbles.horizontalDistance })
-                .attr('cy', function(d, i) { return bubbles.candidateStartingPoint + i * bubbles.bubbleDistance * 2})
+
+            this.delegates.transition()
+                .duration(1000)
+                .delay(function(d, i) { return i * 50 })
+                .style('fill-opacity', '0.0')
+                .attr('cx', function(d, i) { return bubbles.widthMid })
+                .attr('cy', function(d, i) { return (bubbles.delegateStartingPoint + i * bubbles.bubbleDistance * 2 + 50)})
         }
 
-        bubbles.sort = function() {
+        bubbles.stage2 = function() {
             this.voters.transition()
                 .duration(1000)
-                .attr('cy', function(d, i ) { return ((10 + 15) * (Math.floor(i / 15)) + 70 * bubbles.determineBucket(d))  })
+                .delay(function(d, i) { return i * 50 })
+                .style('fill-opacity', '1.0')
+                .attr('cx', function(d, i) { return bubbles.widthMid - bubbles.horizontalDistance * 2 })
+
+            this.candidates.transition()
+                .duration(1000)
+                .delay(function(d, i) { return i * 50 })
+                .style('fill-opacity', '1.0')
+                .attr('cx', function(d, i) { return bubbles.widthMid + bubbles.horizontalDistance * 2 })
+
+            this.delegates.transition()
+                .duration(1000)
+                .delay(function(d, i) { return i * 50 })
+                .style('fill-opacity', '1.0')
+                .attr('cy', function(d, i) { return (bubbles.delegateStartingPoint + i * bubbles.bubbleDistance * 2)})
         }
+
 
         bubbles.determineBucket = function(dataPoint) {
             if (dataPoint.type == 'democratic') {
@@ -112,7 +161,7 @@ window.Bubbles = (function() {
 
             this.voterStartingPoint = this.heightMid - (((this.voterData.length / 2) - 0.5) * this.bubbleDistance)
             this.candidateStartingPoint = this.heightMid - (((this.candidateData.length / 2) - 0.5) * this.bubbleDistance * 2)
-
+            this.delegateStartingPoint = this.heightMid - (((this.delegateData.length / 2) - 0.5) * this.bubbleDistance * 2)
             return this;
         }
 
@@ -151,6 +200,12 @@ window.Bubbles = (function() {
 
         bubbles.setCandidateData = function(candidateData) {
             this.candidateData = candidateData;
+
+            return this;
+        }
+
+        bubbles.setDelegateData = function(delegateData) {
+            this.delegateData = delegateData;
 
             return this;
         }
