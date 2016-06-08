@@ -155,10 +155,13 @@
                             <p ng-model="currentState"> Every state has a certain number of delegates used, to represent the population of your state compared to population of the United States as a whole. If you live in a heavily populated state, you will have more delegates than a sparsely-populated state. Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
 
                             <div id="tooltip" class="hidden">
-                                <p><strong>Important Label Heading</strong>
-                                </p>
-                                <p><span id="value">100</span>%</p>
+                                <!-- <p><strong>Important Label Heading</strong>
+                                </p> -->
+                                <p><span id="value"></span></p>
                                 <p><span id="stateLabel">State label</span></p>
+                                <p><span id="tooltipElectionAvail"></span></p>
+                                <p><span id="republicanElect"></span></p>
+                                <p><span id="democratElect"></span></p>
                             </div>
 
                             <div id="wrapper">
@@ -185,11 +188,15 @@
                             <h4>How does my state compare to other states?</h4>
                             <p>Let's check out how {{currentState.name}} fits in with the rest of the United States. Click the filters to highlight states that fit within to a category, or hover to learn even more. WIP WIP WIP</p>
                             <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default">Open</button>
-                                <button type="button" class="btn btn-default">Semi-Open</button>
-                                <button type="button" class="btn btn-default">Semi-Closed</button>
-                                <button type="button" class="btn btn-default">Closed</button>
+                                <button type="button" class="btn btn-default" ng-click="changeElectionType('open')">Open</button>
+                                <button type="button" class="btn btn-default" ng-click="changeElectionType('mixed')">Mixed</button>
+                                <button type="button" class="btn btn-default" ng-click="changeElectionType('closed')">Closed</button>
                             </div>
+
+                            <!-- <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default" ng-model="electionType" ng-value="open">Republican</button>
+                                <button type="button" class="btn btn-default" ng-model="electionType" ng-value="mixed">Democratic</button>
+                            </div> -->
                             <div id="vis"></div>
                         </div>
 

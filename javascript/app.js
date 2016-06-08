@@ -13,6 +13,7 @@ angular.module('explanation', [])
         //party selection
         $scope.partySelection = "";
         $scope.noVote = false;
+        var map  = MapVis();
 
     	//populates the drop down
     	$http.get('stateData.json')
@@ -28,6 +29,8 @@ angular.module('explanation', [])
     	$scope.selectState = function(selectedState) {
     		$scope.currentState = JSON.parse(selectedState);
             evalClosedOff();
+            map.stateSelect($scope.currentState);
+            map();
     	}
 
         //starts the experience
@@ -58,7 +61,12 @@ angular.module('explanation', [])
             }
         }
 
-		console.log($scope.currentState);
+        $scope.changeElectionType = function(value) {
+            console.log(value)
+            map.typeSelect(value);
+            map();
+        }
+
 		//console.log(selectedState);
 
         //var bubbles = Bubbles();
