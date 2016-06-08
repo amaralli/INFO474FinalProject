@@ -43,22 +43,21 @@ window.MapVis = (function() {
                     var paths = svg.selectAll("path")
                         .data(shape.features).enter().append("path")
                         .attr("class", "state")
+                        .attr("id", function(d) {
+                            return d.properties.NAME;
+                        })
                         .attr("d", path)
                         .style("fill", function(d) {
-                            if(d.properties.NAME == selectedState.name) {
-                                return "#e57373";
-                            } else if(trimmedStates.indexOf(d.properties.NAME) >= 0){
-                                return "#80d8ff"; 
-                            } else {
+                            // if(d.properties.NAME == selectedState.name) {
+                            //     return "#e57373";
+                            // } else {
                                 return "#C9C9C9";
-                            }
+                            //}
 
                         })
                         .style("stroke", "white")
                         .on("mouseover", function(d) {   //Add tooltip on mouseover for each circle
-
                             var stateInfo = findStateInfo(d.properties.NAME)
-
                             d3.select(this)
                                 .transition()
                                 .duration(100)
@@ -91,12 +90,19 @@ window.MapVis = (function() {
                             d3.select(this)
                                 .transition()
                                 .duration(100)
-                                .style("fill", "#C9C9C9")
+                                .style("fill", function(d) {
+                                    if(trimmedStates.indexOf(d.properties.NAME) >= 0) {
+                                        return "e57373";
+                                    } else {
+                                        return "C9C9C9";
+                                    }
+                                })
 
                              //Hide the tooltip
                              d3.select("#tooltip").classed("hidden", true);
 
                         })
+
 
                     var findStateInfo = function(stateName) {
                         var stateInfo = {
@@ -114,6 +120,20 @@ window.MapVis = (function() {
                         }
 
                         return stateInfo;
+                    }
+
+
+                    var statePaths = svg.selectAll("path");
+                    for(var i = 0; i < statePaths[0].length; i++) {
+                        var img = d3.select("#" + statePaths[0][i].id);
+                        // if(statePaths[0][i].id == selectedState.name) {
+                        //     img.style("fill", "#e57373");
+                        // }
+                        if(trimmedStates.indexOf(statePaths[0][i].id) >= 0) {
+                            img.style("fill", "#e57373");
+                        } else {
+                            img.style("fill", "C9C9C9")
+                        }
                     }
                // })
             });
@@ -148,7 +168,6 @@ window.MapVis = (function() {
                     }
                 }
                 selectedType = type;
-                console.log(trimmedStates)
             }
             return this;
         }
