@@ -1,7 +1,6 @@
 'use strict';
 
 //state choice functionality to allow response without refresh
-
 angular.module('explanation', [])
     .controller('StateSelectController', function($scope, $http /*, $window*/) {
     	//selected state
