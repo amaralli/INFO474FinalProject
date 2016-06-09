@@ -74,137 +74,146 @@
 
                     <div id="overallExplanation" ng-hide="currentState == '' || partySelection == ''">
 
+                        <h5>Let's see how each part of the election process happens in {{currentState.name}}</h5>
 
                         <!--Button group to select party affiliation-->
+                        <div class="row">
 
-                        <div id="votingEligibilitySection" class="section">
+                            <div id="bubbleExplanation" class="col-sm-5">
+                                <div id="votingEligibilitySection" class="section">
 
-                            <h4>Who is allowed to vote, and for what party?</h4>
-                            <p>Each state gets to choose who is allowed to participate in the non-general election. Some states require party registration, some allow anyone to vote. </p>
+                                    <h4>Who is allowed to vote, and for what party?</h4>
+                                    <p>Each state gets to choose who is allowed to participate in the non-general election. Some states require party registration, some allow anyone to vote. </p>
 
-                            <p ng-if="currentState[partySelection].type=='closed'">{{currentState.name}} runs closed elections, so voters need to be registered with the party they plan to vote for in pre-general elections.</p>
+                                    <p ng-if="currentState[partySelection].type=='closed'">{{currentState.name}} runs closed elections, so voters need to be registered with the party they plan to vote for in pre-general elections.</p>
 
-                            <p ng-if="currentState[partySelection].type== 'open'">{{currentState.name}} runs open elections, so voters do not need to be registered with the party they plan to vote for in the pre-general elections, although they must choose only one party to vote.</p>
+                                    <p ng-if="currentState[partySelection].type== 'open'">{{currentState.name}} runs open elections, so voters do not need to be registered with the party they plan to vote for in the pre-general elections, although they must choose only one party to vote.</p>
 
-                            <p ng-if="currentState[partySelection].type=='mixed'">{{currentState.name}} runs a mixed election, so voters in your state can vote in a variety of ways, depending on your state. Some will include everyone on one ballot, some will only allow registered members of a party to only vote for that party but still allow independents to vote as they choose, and more.</p>
+                                    <p ng-if="currentState[partySelection].type=='mixed'">{{currentState.name}} runs a mixed election, so voters in your state can vote in a variety of ways, depending on your state. Some will include everyone on one ballot, some will only allow registered members of a party to only vote for that party but still allow independents to vote as they choose, and more.</p>
 
-                            <h5>Let's see how people can decide to vote in {{currentState.name}}!</h5>
+                                    <h5>Let's see how people can decide to vote in {{currentState.name}}!</h5>
 
-                            <div id="bubbles"></div>
+                                    <p>The blue bubbles represent registered Democrats, the red bubbles represent registered Republicans, and the green bubbles represent everyone else.</p>
 
-                            <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn" onclick="bubbleChart.stage0()">Stage 0</button>
-                                <button type="button" class="btn" onclick="bubbleChart.stage1()">Stage 1</button>
-                                <button type="button" class="btn" onclick="bubbleChart.stage2()">Stage 2</button>
-                                <!-- <button type="button" class="btn btn-default" ng-click="selectParty('none')">None</button> -->
-                            </div>
+                                    <p ng-if="currentState[partySelection].type=='closed'">Your state is closed, so you can see that all the blue bubbles can only go to the Democratic voting areas, and are not allowed into the Republican voting areas. The reverse is true for the red bubbles. The green bubbles are not registered for either, and cannot vote in either party.</p>
 
-                            <p>The blue bubbles represent registered Democrats, the red bubbles represent registered Republicans, and the green bubbles represent everyone else.</p>
+                                    <p ng-if="currentState[partySelection].type== 'open'">Your state is open, so you can see that all of the bubbles of any color can go vote in any voting booth, or none at all.</p>
 
-                            <p ng-if="currentState[partySelection].type=='closed'">Your state is closed, so you can see that all the blue bubbles can only go to the Democratic voting areas, and are not allowed into the Republican voting areas. The reverse is true for the red bubbles. The green bubbles are not registered for either, and cannot vote in either party.</p>
+                                    <p ng-if="currentState[partySelection].type=='mixed'">Your state is too complicated for a version 0 product to supply.... </p>
 
-                            <p ng-if="currentState[partySelection].type== 'open'">Your state is open, so you can see that all of the bubbles of any color can go vote in any voting booth, or none at all.</p>
-
-                            <p ng-if="currentState[partySelection].type=='mixed'">Your state is too complicated for a version 0 product to supply.... </p>
-
-                        </div>
-
-                        <div id="delegateExplanation" class="section">
-
-                            <h4>I know where I can vote now, but what does voting actually do?</h4>
-
-                            <p>Funny enough, your vote doesn't vote to elect a candidate, your vote counts towards electing a person to elect a candidate for you. This person is called a delegate, and their job is to represent your vote in the elections outside of your district.</p>
-
-                            <p ng-if="currentState.republican.allocation=='unbound'">However, in {{currentState.name}}, there is a small caveat. Your state's delegates are unbound, which means that although delegates are awarded depending on the results of your vote, delegates can still decide to vote according to their own views, regardless of the results of your state. Although this rarely happens, it is still something to be aware of.</p>
-
-                            <p>Many states have different ways of calculating how your vote transfers over towards a delegate, but first we have to talk about how your vote is collected in the first place</p>
-
-                        </div>
-
-                        <div id="electionTypeSection" class="section">
-                            <h4>How does {{currentState.name}} gather your votes to choose your state's delegates?</h4>
-
-                            <p ng-model="currentState">Your party in this state holds a {{currentState[partySelection].method}} to choose its delegates</p>
-
-                            <img src="img/caucus.jpg" ng-if="currentState[partySelection].method == 'caucus'">
-
-                            <p ng-if="currentState[partySelection].method == 'caucus'">A caucus is a system of local gatherings where voters decide which candidate to support and select delegates for nominating conventions. Caucuses are unique in that they allow participants to openly show support for candidates. Voting is often done by raising hands or breaking into groups according to the candidate participants support. The results of the caucus are used to determine the delegates present at county, state and national nominating conventions of each political party. Most often, only registered voters can participate in a caucus, and they are limited to the caucus of the party with which they are affiliated. </p>
-
-                            <img src="img/primary.jpg" ng-if="currentState[partySelection].method == 'primary'">
-
-                            <p ng-if="currentState[partySelection].method == 'primary'">A primary is a statewide voting process in which voters cast secret ballots for their preferred candidates. Similar to the general election process, primary voters cast secret ballots for the candidates of their choosing. For those who have ever voted before, from a general election to a school class president, this will feel very familiar. </p>
-
-                        </div>
-
-                        <div id="distributionTypeSection" class="section">
-                            <h4>Once my vote's been cast, how do the delegates get chosen?</h4>
-
-                            <p>Now that we know how your vote is cast, and that your vote actually goes towards delegate representation, we now know that your vote will go to a delegate that matches your views, right? Well, not always.</p>
-
-                            <p ng-if="currentState[partySelection].method == 'caucus'">Thankfully, your state and party vote in caucuses, so it really is that easy! Your vote is proportional, which means that if your vote represents 60% of the people in your voting district, 60% of the delegates are going to vote for the person you wanted to see in office. </p>
-
-                            <p ng-if="currentState.republican.allocation=='p'">Thankfully, {{currentState.name}} is proportional, so it really is that easy. If your vote represents 60% of the people in your voting district, 60% of the delegates are going to vote for the person you wanted to see in office.</p>
-
-                            <p ng-if="currenState.republican.allocation == 'wtm'">Now, {{currentState.name}} is a bit different. Your state is Winner Take Most, which means that some delegates are reserved for the winner of the primary/caucus, and others are divided proportionally to the outcome of vote. So, if you voted in the majority of your state, your vote is more represented than people with other views. However, if you are in the minority, your vote will be represented less than those with the majority view.</p>
-
-                            <p ng-if="currenState.republican.allocation == 'wta'">{{currentState.name}} is actually very different than this system. Your state is Winner Take All, which means that all delegates are awarded to the winner of a primary. If you are a part of the majority vote, your vote will be overrepresented by a large degree. If your vote is not part of the majority, your vote will actually not count towards electing a candidate. Bummer.</p>
-
-                        </div>
-
-                        <div id="pieChartSection" class="section">
-
-                            <h4 id="pieTitle">How much of an impact do the delegates my state pick have on the candidate that will make it into the general election?</h4>
-
-
-                            <p ng-model="currentState"> Every state has a certain number of delegates used, to represent the population of your state compared to population of the United States as a whole. If you live in a heavily populated state, you will have more delegates than a sparsely-populated state. Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
-
-                            <div id="tooltip" class="hidden">
-                                <!-- <p><strong>Important Label Heading</strong>
-                                </p> -->
-                                <p><span id="value"></span></p>
-                                <p><span id="stateLabel">State label</span></p>
-                                <p><span id="tooltipElectionAvail"></span></p>
-                                <p><span id="republicanElect"></span></p>
-                                <p><span id="democratElect"></span></p>
-                            </div>
-
-                            <div id="wrapper">
-                                <div id="firstSet"><p id="titleRep">Republican:</p>
-                                    <div id="pie1"></div>
-                                    <div id="pie2"></div>
                                 </div>
-                                <div id="secondSet">
-                                    <p id="titleDem">Democrat:</p>
-                                    <div id="pie3"></div>
-                                    <div id="pie4"></div>
+
+                                <div id="delegateExplanation" class="section">
+
+                                    <h4>I know where I can vote now, but what does voting actually do?</h4>
+
+                                    <p>Funny enough, your vote doesn't vote to elect a candidate, your vote counts towards electing a person to elect a candidate for you. This person is called a delegate, and their job is to represent your vote in the elections outside of your district.</p>
+
+                                    <p ng-if="currentState.republican.allocation=='unbound'">However, in {{currentState.name}}, there is a small caveat. Your state's delegates are unbound, which means that although delegates are awarded depending on the results of your vote, delegates can still decide to vote according to their own views, regardless of the results of your state. Although this rarely happens, it is still something to be aware of.</p>
+
+                                    <p>Many states have different ways of calculating how your vote transfers over towards a delegate, but first we have to talk about how your vote is collected in the first place</p>
+
+                                </div>
+
+                                <div id="distributionTypeSection" class="section">
+                                    <h4>Once my vote's been cast, how do the delegates get chosen?</h4>
+
+                                    <p>Now that we know how your vote is cast, and that your vote actually goes towards delegate representation, we now know that your vote will go to a delegate that matches your views, right? Well, not always.</p>
+
+                                    <p ng-if="currentState[partySelection].method == 'caucus'">Thankfully, your state and party vote in caucuses, so it really is that easy! Your vote is proportional, which means that if your vote represents 60% of the people in your voting district, 60% of the delegates are going to vote for the person you wanted to see in office. </p>
+
+                                    <p ng-if="currentState.republican.allocation=='p'">Thankfully, {{currentState.name}} is proportional, so it really is that easy. If your vote represents 60% of the people in your voting district, 60% of the delegates are going to vote for the person you wanted to see in office.</p>
+
+                                    <p ng-if="currenState.republican.allocation == 'wtm'">Now, {{currentState.name}} is a bit different. Your state is Winner Take Most, which means that some delegates are reserved for the winner of the primary/caucus, and others are divided proportionally to the outcome of vote. So, if you voted in the majority of your state, your vote is more represented than people with other views. However, if you are in the minority, your vote will be represented less than those with the majority view.</p>
+
+                                    <p ng-if="currenState.republican.allocation == 'wta'">{{currentState.name}} is actually very different than this system. Your state is Winner Take All, which means that all delegates are awarded to the winner of a primary. If you are a part of the majority vote, your vote will be overrepresented by a large degree. If your vote is not part of the majority, your vote will actually not count towards electing a candidate. Bummer.</p>
+
+                                </div>
+                            </div>
+
+                            <div id="bubbleColumn" class="col-sm-7">
+                                <div id="bubbles"></div>
+
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <button type="button" class="btn" onclick="bubbleChart.stage0()">Stage 0</button>
+                                    <button type="button" class="btn" onclick="bubbleChart.stage1()">Stage 1</button>
+                                    <button type="button" class="btn" onclick="bubbleChart.stage2()">Stage 2</button>
+                                    <!-- <button type="button" class="btn btn-default" ng-click="selectParty('none')">None</button> -->
                                 </div>
                             </div>
                         </div>
 
-                        <!-- <div id="tooltip2" class="hidden">
-                            <p><strong>Important Label Heading</strong>
-                            </p>
-                            <p><span id="value">100</span>%</p>
-                        </div> -->
+                        <div class="center-align">
+                            <div id="electionTypeSection" class="section">
+                                <h4>How does {{currentState.name}} gather your votes to choose your state's delegates?</h4>
 
-                        <div id="mapSection" class="section">
-                            <!--button group to toggle between explore options-->
-                            <h4>How does my state compare to other states?</h4>
-                            <p>Let's check out how {{currentState.name}} fits in with the rest of the United States. Click the filters to highlight states that fit within to a category, or hover to learn even more. WIP WIP WIP</p>
-                            <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default" ng-click="changeElectionType('open')">Open</button>
-                                <button type="button" class="btn btn-default" ng-click="changeElectionType('mixed')">Mixed</button>
-                                <button type="button" class="btn btn-default" ng-click="changeElectionType('closed')">Closed</button>
+                                <p ng-model="currentState">Your party in this state holds a {{currentState[partySelection].method}} to choose its delegates</p>
+
+                                <img src="img/caucus.jpg" ng-if="currentState[partySelection].method == 'caucus'">
+
+                                <p ng-if="currentState[partySelection].method == 'caucus'">A caucus is a system of local gatherings where voters decide which candidate to support and select delegates for nominating conventions. Caucuses are unique in that they allow participants to openly show support for candidates. Voting is often done by raising hands or breaking into groups according to the candidate participants support. The results of the caucus are used to determine the delegates present at county, state and national nominating conventions of each political party. Most often, only registered voters can participate in a caucus, and they are limited to the caucus of the party with which they are affiliated. </p>
+
+                                <img src="img/primary.jpg" ng-if="currentState[partySelection].method == 'primary'">
+
+                                <p ng-if="currentState[partySelection].method == 'primary'">A primary is a statewide voting process in which voters cast secret ballots for their preferred candidates. Similar to the general election process, primary voters cast secret ballots for the candidates of their choosing. For those who have ever voted before, from a general election to a school class president, this will feel very familiar. </p>
+
                             </div>
 
-                            <!-- <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default" ng-model="electionType" ng-value="open">Republican</button>
-                                <button type="button" class="btn btn-default" ng-model="electionType" ng-value="mixed">Democratic</button>
+                            <div id="pieChartSection" class="section">
+
+                                <h4 id="pieTitle">How much of an impact do the delegates my state pick have on the candidate that will make it into the general election?</h4>
+
+
+                                <p ng-model="currentState"> Every state has a certain number of delegates used, to represent the population of your state compared to population of the United States as a whole. If you live in a heavily populated state, you will have more delegates than a sparsely-populated state. Your state is allotted {{currentState.democratic.delegates}} democratic delegates and {{currentState.republican.delegates}} republican delegates</p>
+
+                                <div id="tooltip" class="hidden">
+                                    <!-- <p><strong>Important Label Heading</strong>
+                                    </p> -->
+                                    <p><span id="value"></span></p>
+                                    <p><span id="stateLabel">State label</span></p>
+                                    <p><span id="tooltipElectionAvail"></span></p>
+                                    <p><span id="republicanElect"></span></p>
+                                    <p><span id="democratElect"></span></p>
+                                </div>
+
+                                <div id="wrapper">
+                                    <div id="firstSet"><p id="titleRep">Republican:</p>
+                                        <div id="pie1"></div>
+                                        <div id="pie2"></div>
+                                    </div>
+                                    <div id="secondSet">
+                                        <p id="titleDem">Democrat:</p>
+                                        <div id="pie3"></div>
+                                        <div id="pie4"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div id="tooltip2" class="hidden">
+                                <p><strong>Important Label Heading</strong>
+                                </p>
+                                <p><span id="value">100</span>%</p>
                             </div> -->
-                            <div id="vis"></div>
-                        </div>
 
-                        <div id="conclusionSection" class="section">
+                            <div id="mapSection" class="section">
+                                <!--button group to toggle between explore options-->
+                                <h4>How does my state compare to other states?</h4>
+                                <p>Let's check out how {{currentState.name}} fits in with the rest of the United States. Click the filters to highlight states that fit within to a category, or hover to learn even more. WIP WIP WIP</p>
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <button type="button" class="btn btn-default" ng-click="changeElectionType('open')">Open</button>
+                                    <button type="button" class="btn btn-default" ng-click="changeElectionType('mixed')">Mixed</button>
+                                    <button type="button" class="btn btn-default" ng-click="changeElectionType('closed')">Closed</button>
+                                </div>
+
+                                <!-- <div class="btn-group" role="group" aria-label="...">
+                                    <button type="button" class="btn btn-default" ng-model="electionType" ng-value="open">Republican</button>
+                                    <button type="button" class="btn btn-default" ng-model="electionType" ng-value="mixed">Democratic</button>
+                                </div> -->
+                                <div id="vis"></div>
+                            </div>
+
+                            <div id="conclusionSection" class="section">
+                            </div>
                         </div>
                     </div>
                 </div>
