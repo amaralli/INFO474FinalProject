@@ -1,10 +1,10 @@
 var PieChart = function() {
     
-    var partyPercent;
-    var percent;
-    var needed;
+    var variable;
     var text;
     var hoverText;
+    
+    
     var width = 228,
     height = 228,
     radius = Math.min(width, height) / 2;
@@ -26,11 +26,9 @@ var PieChart = function() {
     function pie(selection) {
         selection.each(function(data) {
 
-            
-
             var pie = d3.layout.pie()
                 .sort(null)
-                .value(function(d) { return d[partyPercent] });
+                .value(function(d) { return d[variable] });
 
             var svg = d3.select(this).append("svg")
                 .attr("width", width)
@@ -42,7 +40,7 @@ var PieChart = function() {
                 .data(pie(data))
                 .enter().append("g")
                 .attr("class", "arc")
-                .style("fill", function(d) {return color(d[partyPercent])});
+                .style("fill", function(d) {return color(d.data[variable])});
 
             g.append("path")
                 .attr("d", arc)
@@ -62,328 +60,346 @@ var PieChart = function() {
                 d3.select(this).transition()
                 .duration(1000)
                 .attr("d", arc);
-                d3.select("#tooltip")
+                d3.select("#tooltip1")
                 .style("opacity", 0);;
             });
 
             g.append("title")
-                .text(function(d) { return d[hoverText]; });
+                .text(function(d) { return d.data[hoverText] });
 
             g.append("text")
                 .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
                 .attr("dy", ".35em")
                 .style("fill", "black")
-                .text(function(d) { return d[text]; });
+                .text(function(d) { return d.data[text] });
 
                 console.log(data);
             });
 
         }
         
+        pie.label = function(_) {
+            if (!arguments.length) return text;
+            text = _;
+            return this;
+        }
+        
+        pie.hoverLabel = function(_) {
+            if (!arguments.length) return hoverText;
+            hoverText = _;
+            return this;
+        }
+        
+        pie.variable = function(_) {
+            if (!arguments.length) return variable;
+            variable = _;
+            return this;
+        }
+         
         return pie;
     }
    
 
 
-$(function() {
-
-    var width = 350,
-        height = 350,
-        radius = Math.min(width, height) / 2;
-
-    var color = d3.scale.category10()
-        // .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
-    var arc = d3.svg.arc()
-        .outerRadius(radius - 10)
-        .innerRadius(0);
-
-   var arcOver = d3.svg.arc()
-      .innerRadius(0)
-      .outerRadius(radius + 2);
-
-    var labelArc = d3.svg.arc()
-        .outerRadius(radius - 40)
-        .innerRadius(radius - 40);
-
-    var pie = d3.layout.pie()
-        .sort(null)
-        .value(function(d) { return d.RepImpact; });
-
-    var svg = d3.select("#pie1").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-    d3.csv("./data/DelegateImpact.csv", type, function(error, data) {
-    if (error) throw error;
-
-    var g = svg.selectAll(".arc")
-        .data(pie(data))
-        .enter().append("g")
-        .attr("class", "arc")
-        .style("fill", function(d) {return color(d.data.RepImpact);});
-
-    g.append("path")
-        .attr("d", arc)
-        .on("mouseover", function(d) {
-        d3.select(this).transition()
-          .duration(200)
-          .attr("d", arcOver);
-        d3.select("#tooltip")
-         .style("left", d3.event.pageX + "px")
-         .style("top", d3.event.pageY + "px")
-         .style("opacity", 1)
-         .select("#value")
-         .text(d.Abbreviation);
-      })
-
-      .on("mouseout", function(d) {
-        d3.select(this).transition()
-          .duration(200)
-          .attr("d", arc);
-          d3.select("#tooltip")
-          .style("opacity", 0);;
-      });
-
-    g.append("title")
-        .text(function(d) { return d.data.State; });
-
-    g.append("text")
-        .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-        .attr("dy", ".35em")
-        .style("fill", "black")
-        .text(function(d) { return d.data.Abbreviation; });
-
-        console.log(data);
-    });
-
-
-
-    function type(d) {
-    d.RepImpact = +d.RepImpact;
-    return d;
-    }
-
-});
-
-$(function() {
-
-    var width = 350,
-        height = 350,
-        radius = Math.min(width, height) / 2;
-
-    var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
-    var arc = d3.svg.arc()
-        .outerRadius(radius - 10)
-        .innerRadius(0);
-
-   var arcOver = d3.svg.arc()
-      .innerRadius(0)
-      .outerRadius(radius + 2);
-
-    var labelArc = d3.svg.arc()
-        .outerRadius(radius - 40)
-        .innerRadius(radius - 40);
-
-    var pie = d3.layout.pie()
-        .sort(null)
-        .value(function(d) { return d.PercentRep; });
-
-    var svg = d3.select("#pie2").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-    d3.csv("./data/DelegateImpact.csv", type, function(error, data) {
-    if (error) throw error;
-
-    var g = svg.selectAll(".arc")
-        .data(pie(data))
-        .enter().append("g")
-        .attr("class", "arc")
-        .style("fill", function(d) {return color(d.data.NeedRep);});
-
-    g.append("path")
-        .attr("d", arc)
-        .on("mouseover", function(d) {
-        d3.select(this).transition()
-          .duration(200)
-          .attr("d", arcOver);
-      })
-      .on("mouseout", function(d) {
-        d3.select(this).transition()
-          .duration(200)
-          .attr("d", arc);
-      });
-
-    g.append("svg:title")
-        .text(function(d) { return d.data.NeedRep; });
-
-    g.append("text")
-        .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-        .attr("dy", ".35em")
-        .style("fill", "black")
-        // .text(function(d) { return d.data.PercentRep + "%"; });
-        .text(function(d) { return d.data.PercentRep; });
-    });
-
-
-
-    function type(d) {
-    d.RepImpact = +d.RepImpact;
-    return d;
-    }
-
-});
-
-
-$(function() {
-
-    var width = 350,
-        height = 350,
-        radius = Math.min(width, height) / 2;
-
-    var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
-    var arc = d3.svg.arc()
-        .outerRadius(radius - 10)
-        .innerRadius(0);
-
-    var arcOver = d3.svg.arc()
-      .innerRadius(0)
-      .outerRadius(radius + 2);
-
-    var labelArc = d3.svg.arc()
-        .outerRadius(radius - 40)
-        .innerRadius(radius - 40);
-
-    var pie = d3.layout.pie()
-        .sort(null)
-        .value(function(d) { return d.DemImpact; });
-
-    var svg = d3.select("#pie3").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-    d3.csv("./data/DelegateImpact.csv", type, function(error, data) {
-    if (error) throw error;
-
-    var g = svg.selectAll(".arc")
-        .data(pie(data))
-        .enter().append("g")
-        .attr("class", "arc")
-        .style("fill", function(d, i) {return color(i);});
-
-    g.append("path")
-        .attr("d", arc)
-        .on("mouseover", function(d) {
-        d3.select(this).transition()
-          .duration(200)
-          .attr("d", arcOver);
-      })
-      .on("mouseout", function(d) {
-        d3.select(this).transition()
-          .duration(200)
-          .attr("d", arc);
-      });
-
-    g.append("title")
-        .text(function(d) { return d.data.State; });
-
-    g.append("text")
-        .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-        .attr("dy", ".35em")
-        .style("fill", "black")
-        .text(function(d) { return d.data.Abbreviation; });
-    });
-
-    function type(d) {
-    d.RepImpact = +d.RepImpact;
-    return d;
-    }
-
-});
-
-$(function() {
-
-    var width = 350,
-        height = 350,
-        radius = Math.min(width, height) / 2;
-
-    var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
-    var arc = d3.svg.arc()
-        .outerRadius(radius - 10)
-        .innerRadius(0);
-
-   var arcOver = d3.svg.arc()
-      .innerRadius(0)
-      .outerRadius(radius + 2);
-
-    var labelArc = d3.svg.arc()
-        .outerRadius(radius - 40)
-        .innerRadius(radius - 40);
-
-    var pie = d3.layout.pie()
-        .sort(null)
-        .value(function(d) { return d.PercentDem; });
-
-    var svg = d3.select("#pie4").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-    d3.csv("./data/DelegateImpact.csv", type, function(error, data) {
-    if (error) throw error;
-
-    var g = svg.selectAll(".arc")
-        .data(pie(data))
-        .enter().append("g")
-        .attr("class", "arc")
-        .style("fill", function(d) {return color(d.data.NeedRep);});
-
-    g.append("path")
-        .attr("d", arc)
-        .on("mouseover", function(d) {
-        d3.select(this).transition()
-          .duration(200)
-          .attr("d", arcOver);
-      })
-      .on("mouseout", function(d) {
-        d3.select(this).transition()
-          .duration(200)
-          .attr("d", arc);
-      });
-
-    g.append("title")
-        .text(function(d) { return d.data.PercentDem; });
-
-    g.append("text")
-        .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
-        .attr("dy", ".35em")
-        .style("fill", "black")
-        // .text(function(d) { return d.data.PercentRep + "%"; });
-        .text(function(d) { return d.data.PercentDem; });
-    });
-
-
-
-    function type(d) {
-        d.RepImpact = +d.RepImpact;
-        return d;
-    }
-
-});
+// $(function() {
+
+//     var width = 350,
+//         height = 350,
+//         radius = Math.min(width, height) / 2;
+
+//     var color = d3.scale.category10()
+//         // .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+//     var arc = d3.svg.arc()
+//         .outerRadius(radius - 10)
+//         .innerRadius(0);
+
+//    var arcOver = d3.svg.arc()
+//       .innerRadius(0)
+//       .outerRadius(radius + 2);
+
+//     var labelArc = d3.svg.arc()
+//         .outerRadius(radius - 40)
+//         .innerRadius(radius - 40);
+
+//     var pie = d3.layout.pie()
+//         .sort(null)
+//         .value(function(d) { return d.RepImpact; });
+
+//     var svg = d3.select("#pie1").append("svg")
+//         .attr("width", width)
+//         .attr("height", height)
+//         .append("g")
+//         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+//     d3.csv("./data/DelegateImpact.csv", type, function(error, data) {
+//     if (error) throw error;
+
+//     var g = svg.selectAll(".arc")
+//         .data(pie(data))
+//         .enter().append("g")
+//         .attr("class", "arc")
+//         .style("fill", function(d) {return color(d.data.RepImpact);});
+
+//     g.append("path")
+//         .attr("d", arc)
+//         .on("mouseover", function(d) {
+//         d3.select(this).transition()
+//           .duration(200)
+//           .attr("d", arcOver);
+//         d3.select("#tooltip")
+//          .style("left", d3.event.pageX + "px")
+//          .style("top", d3.event.pageY + "px")
+//          .style("opacity", 1)
+//          .select("#value")
+//          .text(d.Abbreviation);
+//       })
+
+//       .on("mouseout", function(d) {
+//         d3.select(this).transition()
+//           .duration(200)
+//           .attr("d", arc);
+//           d3.select("#tooltip")
+//           .style("opacity", 0);;
+//       });
+
+//     g.append("title")
+//         .text(function(d) { return d.data.State; });
+
+//     g.append("text")
+//         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+//         .attr("dy", ".35em")
+//         .style("fill", "black")
+//         .text(function(d) { return d.data.Abbreviation; });
+
+//         console.log(data);
+//     });
+
+
+
+//     function type(d) {
+//     d.RepImpact = +d.RepImpact;
+//     return d;
+//     }
+
+// });
+
+// $(function() {
+
+//     var width = 350,
+//         height = 350,
+//         radius = Math.min(width, height) / 2;
+
+//     var color = d3.scale.ordinal()
+//         .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+//     var arc = d3.svg.arc()
+//         .outerRadius(radius - 10)
+//         .innerRadius(0);
+
+//    var arcOver = d3.svg.arc()
+//       .innerRadius(0)
+//       .outerRadius(radius + 2);
+
+//     var labelArc = d3.svg.arc()
+//         .outerRadius(radius - 40)
+//         .innerRadius(radius - 40);
+
+//     var pie = d3.layout.pie()
+//         .sort(null)
+//         .value(function(d) { return d.PercentRep; });
+
+//     var svg = d3.select("#pie2").append("svg")
+//         .attr("width", width)
+//         .attr("height", height)
+//         .append("g")
+//         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+//     d3.csv("./data/DelegateImpact.csv", type, function(error, data) {
+//     if (error) throw error;
+
+//     var g = svg.selectAll(".arc")
+//         .data(pie(data))
+//         .enter().append("g")
+//         .attr("class", "arc")
+//         .style("fill", function(d) {return color(d.data.NeedRep);});
+
+//     g.append("path")
+//         .attr("d", arc)
+//         .on("mouseover", function(d) {
+//         d3.select(this).transition()
+//           .duration(200)
+//           .attr("d", arcOver);
+//       })
+//       .on("mouseout", function(d) {
+//         d3.select(this).transition()
+//           .duration(200)
+//           .attr("d", arc);
+//       });
+
+//     g.append("svg:title")
+//         .text(function(d) { return d.data.NeedRep; });
+
+//     g.append("text")
+//         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+//         .attr("dy", ".35em")
+//         .style("fill", "black")
+//         // .text(function(d) { return d.data.PercentRep + "%"; });
+//         .text(function(d) { return d.data.PercentRep; });
+//     });
+
+
+
+//     function type(d) {
+//     d.RepImpact = +d.RepImpact;
+//     return d;
+//     }
+
+// });
+
+
+// $(function() {
+
+//     var width = 350,
+//         height = 350,
+//         radius = Math.min(width, height) / 2;
+
+//     var color = d3.scale.ordinal()
+//         .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+//     var arc = d3.svg.arc()
+//         .outerRadius(radius - 10)
+//         .innerRadius(0);
+
+//     var arcOver = d3.svg.arc()
+//       .innerRadius(0)
+//       .outerRadius(radius + 2);
+
+//     var labelArc = d3.svg.arc()
+//         .outerRadius(radius - 40)
+//         .innerRadius(radius - 40);
+
+//     var pie = d3.layout.pie()
+//         .sort(null)
+//         .value(function(d) { return d.DemImpact; });
+
+//     var svg = d3.select("#pie3").append("svg")
+//         .attr("width", width)
+//         .attr("height", height)
+//         .append("g")
+//         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+//     d3.csv("./data/DelegateImpact.csv", type, function(error, data) {
+//     if (error) throw error;
+
+//     var g = svg.selectAll(".arc")
+//         .data(pie(data))
+//         .enter().append("g")
+//         .attr("class", "arc")
+//         .style("fill", function(d, i) {return color(i);});
+
+//     g.append("path")
+//         .attr("d", arc)
+//         .on("mouseover", function(d) {
+//         d3.select(this).transition()
+//           .duration(200)
+//           .attr("d", arcOver);
+//       })
+//       .on("mouseout", function(d) {
+//         d3.select(this).transition()
+//           .duration(200)
+//           .attr("d", arc);
+//       });
+
+//     g.append("title")
+//         .text(function(d) { return d.data.State; });
+
+//     g.append("text")
+//         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+//         .attr("dy", ".35em")
+//         .style("fill", "black")
+//         .text(function(d) { return d.data.Abbreviation; });
+//     });
+
+//     function type(d) {
+//     d.RepImpact = +d.RepImpact;
+//     return d;
+//     }
+
+// });
+
+// $(function() {
+
+//     var width = 350,
+//         height = 350,
+//         radius = Math.min(width, height) / 2;
+
+//     var color = d3.scale.ordinal()
+//         .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+//     var arc = d3.svg.arc()
+//         .outerRadius(radius - 10)
+//         .innerRadius(0);
+
+//    var arcOver = d3.svg.arc()
+//       .innerRadius(0)
+//       .outerRadius(radius + 2);
+
+//     var labelArc = d3.svg.arc()
+//         .outerRadius(radius - 40)
+//         .innerRadius(radius - 40);
+
+//     var pie = d3.layout.pie()
+//         .sort(null)
+//         .value(function(d) { return d.PercentDem; });
+
+//     var svg = d3.select("#pie4").append("svg")
+//         .attr("width", width)
+//         .attr("height", height)
+//         .append("g")
+//         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+//     d3.csv("./data/DelegateImpact.csv", type, function(error, data) {
+//     if (error) throw error;
+
+//     var g = svg.selectAll(".arc")
+//         .data(pie(data))
+//         .enter().append("g")
+//         .attr("class", "arc")
+//         .style("fill", function(d) {return color(d.data.NeedRep);});
+
+//     g.append("path")
+//         .attr("d", arc)
+//         .on("mouseover", function(d) {
+//         d3.select(this).transition()
+//           .duration(200)
+//           .attr("d", arcOver);
+//       })
+//       .on("mouseout", function(d) {
+//         d3.select(this).transition()
+//           .duration(200)
+//           .attr("d", arc);
+//       });
+
+//     g.append("title")
+//         .text(function(d) { return d.data.PercentDem; });
+
+//     g.append("text")
+//         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+//         .attr("dy", ".35em")
+//         .style("fill", "black")
+//         // .text(function(d) { return d.data.PercentRep + "%"; });
+//         .text(function(d) { return d.data.PercentDem; });
+//     });
+
+
+
+//     function type(d) {
+//         d.RepImpact = +d.RepImpact;
+//         return d;
+//     }
+
+// });
 
 
 // $(function() {

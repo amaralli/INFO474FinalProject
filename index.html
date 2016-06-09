@@ -170,16 +170,70 @@
                                 <p><span id="republicanElect"></span></p>
                                 <p><span id="democratElect"></span></p>
                             </div>
+                            
+                            <div id="tooltip1"></div>
 
                             <div id="wrapper">
                                 <div id="firstSet"><p id="titleRep">Republican:</p>
-                                    <div id="pie1"></div>
-                                    <div id="pie2"></div>
+                                    <div id="pie1">
+                                        <script>
+                                        d3.csv('./data/DelegateImpact.csv', function(data) {
+                                            var pie = PieChart();
+                                            pie.label("Abbreviation");
+                                            pie.hoverLabel("State");
+                                            pie.variable("RepImpact");
+                                            
+                                            d3.select('#pie1')
+                                            .datum(data)
+                                            .call(pie)
+                                        });
+                                        </script> 
+                                    </div>
+                                    <div id="pie2">
+                                        <script>
+                                        d3.csv('./data/DelegateImpact.csv', function(data) {
+                                            var pie = PieChart();
+                                            pie.label("PercentRep");
+                                            pie.hoverLabel("PercentRep");
+                                            pie.variable("PercentRep");
+                                            
+                                            d3.select('#pie2')
+                                            .datum(data)
+                                            .call(pie)
+                                        });
+                                        </script> 
+                                    </div>
                                 </div>
                                 <div id="secondSet">
                                     <p id="titleDem">Democrat:</p>
-                                    <div id="pie3"></div>
-                                    <div id="pie4"></div>
+                                    <div id="pie3">
+                                         <script>
+                                        d3.csv('./data/DelegateImpact.csv', function(data) {
+                                            var pie = PieChart();
+                                            pie.label("Abbreviation");
+                                            pie.hoverLabel("State");
+                                            pie.variable("DemImpact");
+                                            
+                                            d3.select('#pie3')
+                                            .datum(data)
+                                            .call(pie)
+                                        });
+                                        </script> 
+                                    </div>
+                                    <div id="pie4">
+                                         <script>
+                                        d3.csv('./data/DelegateImpact.csv', function(data) {
+                                            var pie = PieChart();
+                                            pie.label("PercentDem");
+                                            pie.hoverLabel("PercentDem");
+                                            pie.variable("PercentDem");
+                                            
+                                            d3.select('#pie4')
+                                            .datum(data)
+                                            .call(pie)
+                                        });
+                                        </script> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
