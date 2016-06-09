@@ -78,21 +78,21 @@ window.Bubbles = (function() {
             this.voters.transition()
                 .duration(1000)
                 .delay(function(d, i) { return i * 50 })
-                .style('fill', function(d) { return bubbles.determineColor(d) })
+                .style('fill', '#696969')
                 .style('fill-opacity', '0.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid })
                 .attr('cy', function(d, i) { return bubbles.voterStartingPoint + i * bubbles.bubbleDistance })
 
             this.candidates.transition()
                 .duration(1000)
-                .style('fill', 'black')
+                .style('fill', '#696969')
                 .style('fill-opacity', '0.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid })
                 .attr('cy', function(d, i) { return bubbles.candidateStartingPoint + i * bubbles.bubbleDistance * 2})
 
             this.delegates.transition()
                 .duration(1000)
-                .style('fill', '#C9C9C9')
+                .style('fill', '#AAAAAA')
                 .style('fill-opacity', '0.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid })
                 .attr('cy', function(d, i) { return (bubbles.delegateStartingPoint + i * bubbles.bubbleDistance * 2 + 50)})
@@ -102,21 +102,21 @@ window.Bubbles = (function() {
             this.voters.transition()
                 .duration(1000)
                 .delay(function(d, i) { return i * 50 })
-                .style('fill', function(d) { return bubbles.determineColor(d) })
+                .style('fill', '#696969')
                 .style('fill-opacity', '1.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid - bubbles.horizontalDistance })
 
             this.candidates.transition()
                 .duration(1000)
                 .delay(function(d, i) { return i * 50 })
-                .style('fill', 'black')
+                .style('fill', '#696969')
                 .style('fill-opacity', '1.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid + bubbles.horizontalDistance })
 
             this.delegates.transition()
                 .duration(1000)
                 .delay(function(d, i) { return i * 50 })
-                .style('fill', '#C9C9C9')
+                .style('fill', '#AAAAAA')
                 .style('fill-opacity', '0.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid })
                 .attr('cy', function(d, i) { return (bubbles.delegateStartingPoint + i * bubbles.bubbleDistance * 2 + 50)})
@@ -126,21 +126,21 @@ window.Bubbles = (function() {
             this.voters.transition()
                 .duration(1000)
                 .delay(function(d, i) { return i * 50 })
-                .style('fill', function(d) { return bubbles.determineColor(d) })
+                .style('fill', '#696969')
                 .style('fill-opacity', '1.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid - bubbles.horizontalDistance * 2 })
 
             this.candidates.transition()
                 .duration(1000)
                 .delay(function(d, i) { return i * 50 })
-                .style('fill', 'black')
+                .style('fill', '#696969')
                 .style('fill-opacity', '1.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid + bubbles.horizontalDistance * 2 })
 
             this.delegates.transition()
                 .duration(1000)
                 .delay(function(d, i) { return i * 50 })
-                .style('fill', '#C9C9C9')
+                .style('fill', '#AAAAAA')
                 .style('fill-opacity', '1.0')
                 .attr('cy', function(d, i) { return (bubbles.delegateStartingPoint + i * bubbles.bubbleDistance * 2)})
         }
@@ -155,13 +155,13 @@ window.Bubbles = (function() {
 
             this.candidates.transition()
                 .duration(1000)
-                .style('fill', 'black')
+                .style('fill', '#696969')
                 .style('fill-opacity', '0.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid + bubbles.horizontalDistance * 2 })
 
             this.delegates.transition()
                 .duration(1000)
-                .style('fill', '#C9C9C9')
+                .style('fill', '#AAAAAA')
                 .style('fill-opacity', '0.0')
                 .attr('cy', function(d, i) { return (bubbles.delegateStartingPoint + i * bubbles.bubbleDistance * 2)})
         }
@@ -174,7 +174,7 @@ window.Bubbles = (function() {
                     if (d.type == 'democratic') {
                         return bubbles.determineColor(d);
                     }
-                    return '#C9C9C9';
+                    return '#AAAAAA';
                  })
 
                 .style('fill-opacity', '1.0')
@@ -187,13 +187,13 @@ window.Bubbles = (function() {
 
             this.candidates.transition()
                 .duration(1000)
-                .style('fill', 'black')
+                .style('fill', '#696969')
                 .style('fill-opacity', '0.0')
                 .attr('cx', function(d, i) { return bubbles.widthMid + bubbles.horizontalDistance * 2 })
 
             this.delegates.transition()
                 .duration(1000)
-                .style('fill', '#C9C9C9')
+                .style('fill', '#AAAAAA')
                 .style('fill-opacity', '0.0')
                 .attr('cy', function(d, i) { return (bubbles.delegateStartingPoint + i * bubbles.bubbleDistance * 2)})
         }
