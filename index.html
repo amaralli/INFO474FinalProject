@@ -84,7 +84,7 @@
 
                             <p ng-if="currentState[partySelection].type=='closed'">{{currentState.name}} runs closed elections, so voters need to be registered with the party they plan to vote for in pre-general elections.</p>
 
-                            <p ng-if="currentState[partySelection].type== 'open'">{{currentState.name}} runs open elections, so voters do not need to be registered with the party they plan to vote for in the pre-general elections, although they must choose only one party to vote.</p>
+                            <p ng-if="currentState[partySelection].type== 'open'">{{currentState.name}} runs open elections, so voters do not need to be registered with the party they plan to vote for in the pre-general elections, although they must choose only one party to vote. The blue bubbles represent registered Democrats, the red bubbles represent registered Republicans, and the green bubbles represent everyone else.</p>
 
                             <p ng-if="currentState[partySelection].type=='mixed'">{{currentState.name}} runs a mixed election, so voters in your state can vote in a variety of ways, depending on your state. Some will include everyone on one ballot, some will only allow registered members of a party to only vote for that party but still allow independents to vote as they choose, and more.</p>
                             
@@ -96,19 +96,19 @@
 
                             
 
-                            <p>The blue bubbles represent registered Democrats, the red bubbles represent registered Republicans, and the green bubbles represent everyone else.</p>
+                        
                             
 
                             
                             <div ng-if="currentState[partySelection].type=='closed'">
-                            <p >Your state is closed, so you can see that all the blue bubbles can only go to the Democratic voting areas, and are not allowed into the Republican voting areas. The reverse is true for the red bubbles. The green bubbles are not registered for either, and cannot vote in either party.</p>
+                            <p >Your state is closed, so you can see that all the blue bubbles split off from the other bubbles, which demonstrates that as registered democrats, these bubbles would only be able to vote for candidates running under their registered party, which in this case is the democratic party. Bubbles of other colors (registered to other political parties) must vote in their respective parties.</p>
                             <button type="button" class="btn" ng-click="showStates()" onclick="bubbleChart.stage4()">See this in Action</button>
                             </div>
                             
                             <div id="bubbles" ng-show="showme4"></div>
 
                             <div ng-if="currentState[partySelection].type== 'open'">
-                            <p>Your state is open, so you can see that all of the bubbles of any color can go vote in any voting booth, or none at all.</p>
+                            <p>Your state is open, so you can see that all bubbles of any color (red/republican, blue/democratic, green/independent) presented on the screen. This demonstrates that you do not need to be registered with a party to participate in the election process, anyone can vote for whomever, as long as they are a registered voter. </p>
                             <button type="button" class="btn" ng-click="showOpen()" onclick="bubbleChart.stage3()">See this in Action</button>
                             </div>
                             
