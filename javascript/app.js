@@ -46,6 +46,39 @@ angular.module('explanation', [])
 				return false;
 			}
 		}
+        
+        $scope.showme4 = false;
+        
+        $scope.showStates = function() {
+            $scope.showme4 = true;
+            $scope.showreal = false;
+            $scope.showperc = false; 
+        }
+        
+        $scope.showopen = false;
+        
+        $scope.showOpen = function() {
+            $scope.showopen = true;
+            $scope.showreal = false;
+            $scope.showperc = false; 
+        }
+        
+        $scope.showperc = false; 
+        
+        $scope.showPerception = function() {
+            $scope.showperc = true; 
+            $scope.showopen = false;
+            $scope.showme4 = false;
+        }
+        
+        $scope.showreal = false; 
+        
+        $scope.showReal = function() {
+            $scope.showreal = true;
+            $scope.showopen = false; 
+            $scope.showme4 = false; 
+        }
+            
 
         $scope.selectParty = function(partyName) {
             $scope.partySelection = partyName;

@@ -29,7 +29,7 @@
     <body class="container" ng-app="explanation">
         <div ng-controller="StateSelectController">
             <div id="intro" ng-show="firstStart">
-            <h2>Does your vote count?</h2>
+            <h2>Where does my vote go?</h2>
 
                 <p>If you are a US resident of voting age, you’ve certainly heard people complain about the perceived un-impactfulness of their vote. We have created a tool which allows anyone to follow a vote from the start of the caucuses and primaries, up until the general election. Play around with it, and then make up your own mind as to whether your vote really is as un-impactful as it may seem.</p>
 
@@ -90,23 +90,25 @@
 
                             <h5>Let's see how people can decide to vote in {{currentState.name}}!</h5>
 
-                            <div id="bubbles"></div>
-
-                            <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn" onclick="bubbleChart.stage0()">Stage 0</button>
-                                <button type="button" class="btn" onclick="bubbleChart.stage1()">Stage 1</button>
-                                <button type="button" class="btn" onclick="bubbleChart.stage2()">Stage 2</button>
-                                <button type="button" class="btn" onclick="bubbleChart.stage3()">Stage 3</button>
-                                <button type="button" class="btn" onclick="bubbleChart.stage4()">Stage 4</button>
-
-                                <!-- <button type="button" class="btn btn-default" ng-click="selectParty('none')">None</button> -->
-                            </div>
+                            
 
                             <p>The blue bubbles represent registered Democrats, the red bubbles represent registered Republicans, and the green bubbles represent everyone else.</p>
+                            
 
-                            <p ng-if="currentState[partySelection].type=='closed'">Your state is closed, so you can see that all the blue bubbles can only go to the Democratic voting areas, and are not allowed into the Republican voting areas. The reverse is true for the red bubbles. The green bubbles are not registered for either, and cannot vote in either party.</p>
+                            
+                            <div ng-if="currentState[partySelection].type=='closed'">
+                            <p >Your state is closed, so you can see that all the blue bubbles can only go to the Democratic voting areas, and are not allowed into the Republican voting areas. The reverse is true for the red bubbles. The green bubbles are not registered for either, and cannot vote in either party.</p>
+                            <button type="button" class="btn" ng-click="showStates()" onclick="bubbleChart.stage4()">See this in Action</button>
+                            </div>
+                            
+                            <div id="bubbles" ng-show="showme4"></div>
 
-                            <p ng-if="currentState[partySelection].type== 'open'">Your state is open, so you can see that all of the bubbles of any color can go vote in any voting booth, or none at all.</p>
+                            <div ng-if="currentState[partySelection].type== 'open'">
+                            <p>Your state is open, so you can see that all of the bubbles of any color can go vote in any voting booth, or none at all.</p>
+                            <button type="button" class="btn" ng-click="showOpen()" onclick="bubbleChart.stage3()">See this in Action</button>
+                            </div>
+                            
+                            <div id="bubbles" ng-show="showopen"></div>
 
                             <p ng-if="currentState[partySelection].type=='mixed'">Your state is too complicated for a version 0 product to supply.... </p>
 
@@ -115,12 +117,35 @@
                         <div id="delegateExplanation" class="section">
 
                             <h4>I know where I can vote now, but what does voting actually do?</h4>
+                            
+                           
+                            <div>
+                                <p>In the democratic process, it would seem intuitive that a vote cast at a primary or caucus would directly count for whomever said voter was voting for</p>
+                                
+                                <p>Funny enough, your vote doesn't vote to elect a candidate, your vote counts towards electing a person to elect a candidate for you. This person is called a delegate, and their job is to represent your vote in the elections outside of your district.</p>
+                                
+                                <p ng-if="currentState.republican.allocation=='unbound'">However, in {{currentState.name}}, there is a small caveat. Your state's delegates are unbound, which means that although delegates are awarded depending on the results of your vote, delegates can still decide to vote according to their own views, regardless of the results of your state. Although this rarely happens, it is still something to be aware of.</p>
+                                
+                                <p>Many states have different ways of calculating how your vote transfers over towards a delegate, but first we have to talk about how your vote is collected in the first place</p>
+                                
+                            </div>
+                            
+                            <div id="bubbles" ng-show="showperc || showreal"></div>
+                            
+                           
+                                
+                                
+                           
+                            
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn" ng-click="showPerception()" onclick="bubbleChart.stage1()">How people <i>think</i> they vote</button>
+                                <button type="button" class="btn" ng-click="showReal()" onclick="bubbleChart.stage2()">How people <i>actually</i> vote</button>
+                                
+                           </div>
 
-                            <p>Funny enough, your vote doesn't vote to elect a candidate, your vote counts towards electing a person to elect a candidate for you. This person is called a delegate, and their job is to represent your vote in the elections outside of your district.</p>
+                            
 
-                            <p ng-if="currentState.republican.allocation=='unbound'">However, in {{currentState.name}}, there is a small caveat. Your state's delegates are unbound, which means that although delegates are awarded depending on the results of your vote, delegates can still decide to vote according to their own views, regardless of the results of your state. Although this rarely happens, it is still something to be aware of.</p>
-
-                            <p>Many states have different ways of calculating how your vote transfers over towards a delegate, but first we have to talk about how your vote is collected in the first place</p>
+                            
 
                         </div>
 

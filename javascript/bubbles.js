@@ -197,6 +197,7 @@ window.Bubbles = (function() {
                 .style('fill-opacity', '0.0')
                 .attr('cy', function(d, i) { return (bubbles.delegateStartingPoint + i * bubbles.bubbleDistance * 2)})
         }
+        
 
         bubbles.determineBucket = function(dataPoint) {
             if (dataPoint.type == 'democratic') {

@@ -36,6 +36,12 @@ path:hover path.state {
 	fill : "#030303";
 }
 
+#bubbles {
+    /*position: fixed;*/
+    top:20px;
+    float: left;
+}
+
 img {
     margin-bottom: 8px;
     margin-top: 8px;
